@@ -10,8 +10,10 @@
     <!-- CSS and External Libraries-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css">
     <link rel="stylesheet" href="INSERT_ASSET_FOR_REST">
-    <link rel="stylesheet" href="INSERT_ASSET_STYLE">
+    <link rel="stylesheet" href="assets/css/style.css">
 
 </head>
 
@@ -27,7 +29,7 @@
                 <label for="movie-search"></label>
                 <input type="email" class="form-control shadow" id="moive-input" placeholder="Enter Movie Title">
             </div>
-            <button type="submit" class="btn btn-primary float-right mt-1">Search Movie</button>
+            <button type="submit" class="btn btn-primary float-right mt-3">Search Movie</button>
         </form>
    
 
@@ -38,12 +40,44 @@
 
     <!-------------- MOVIE INFO CARD ------------------------->
     <div class="card mt-4">
-        <h5 class="card-header" id="movie-title">Movie Title</h5>
-        <div class="card-body">
+        <h5 class="card-header" id="movie-title">The Lion King</h5>
+        <div class="card-body mr-n3">
 
-            <!---------- MOVIE INFO CDOE HERE ------------->
+           <div class="row">
+                <!-- MOVIE POSTER-->
+               <div class="col-4">
+                    <img src="https://m.media-amazon.com/images/M/MV5BYTYxNGMyZTYtMjE3MS00MzNjLWFjNmYtMDk3N2FmM2JiM2M1XkEyXkFqcGdeQXVyNjY5NDU4NzI@._V1_SX300.jpg" class="img-fluid rounded" alt="Movie Poster" id="movie-poster">
+               </div>
+               
 
-            <!---------- MOVIE INFO CDOE HERE ------------->
+               <!-- MOVE INFO ---->
+               <div class="col-6 ml-n5">
+                    <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><h6>Genre:</h6><h6 id="movie-genre">Drama, Animated</h6></li>
+                            <li class="list-group-item"><h6>Rated:</h6><h6 id="movie-rated">R</h6></li>
+                            <li class="list-group-item"><h6>Runtime:</h6><h6 id="movie-runtime">1 hour 30 min</h6></li>
+                            <li class="list-group-item"><h6>Release Date:</h6><h6 id="movie-release">Aug. 3rd, 1999</h6></li>
+                            <li class="list-group-item"><h6>Director:</h6><h6 id="movie-director">Christopher Nolan</h6></li>
+                            <li class="list-group-item"><h6>Actors:</h6><h6 id="movie-actors">Josh Brolin, Sean Astin, Bruce Willis, Lili Reinhardt, Michelle Pfeiffer</h6></li>
+                            <li class="list-group-item"><h6>Plot:</h6><p id="movie-plot">This Disney animated feature follows the adventures of the young lion Simba (Jonathan Taylor Thomas), the heir of his father, Mufasa (James Earl Jones). Simba's wicked uncle, Scar (Jeremy Irons), plots to usurp Mufasa's throne by luring father and son into a stampede of wildebeests. But Simba escapes, and only Mufasa is killed. Simba returns as an adult (Matthew Broderick) to take back his homeland from Scar with the help of his friends Timon (Nathan Lane) and Pumbaa (Ernie Sabella).</p></li>
+                          </ul>
+
+
+               </div>
+
+
+                <!--MOVIE RATINGS & FAV-->
+               <div class="col-2">
+                    <ul class="list-group list-group-flush">
+                            <li class="list-group-item border-0"><i class="fas fa-heart fa-lg" id="fav-heart"></i></li>
+                            <li class="list-group-item border-0"><img src="assets/images/imdb.png" alt="IMDB" id="imdb-img"><span id="imdb-score">73%</span></li>
+                            <li class="list-group-item border-0"><img src="assets/images/tr-audience.png" alt="Rotten Tomatoes Audience" id="rt-audience-img"><span id="rt-aud-score">99%</span></li>
+                            <li class="list-group-item border-0"><img src="assets/images/fresh-score.png" alt="Rotten Tomatoes Freshness" id="rt-fresh-img"><span id="rt-fresh-score">89%</span></li>
+                          </ul>
+
+               </div>
+
+           </div>
 
         </div>
     </div>
