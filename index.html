@@ -1,12 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Movie Search</title>
+
+    <!-- CSS and External Libraries-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="INSERT_ASSET_FOR_REST">
+    <link rel="stylesheet" href="INSERT_ASSET_STYLE">
+
 </head>
+
 <body>
-    
+
+    <div class="container">
+        <!-- Content here -->
+
+
+        <!------------ MOVIE SEARCH FORM --------------------->
+        <form>
+            <div class="form-row mt-5">
+                <label for="movie-search"></label>
+                <input type="email" class="form-control shadow" id="moive-input" placeholder="Enter Movie Title">
+            </div>
+            <button type="submit" class="btn btn-primary float-right mt-1">Search Movie</button>
+        </form>
+   
+
+    <!------------ END MOVIE SEARCH FORM --------------------->
+
+    <br>
+    <br>
+
+    <!-------------- MOVIE INFO CARD ------------------------->
+    <div class="card mt-4">
+        <h5 class="card-header" id="movie-title">Movie Title</h5>
+        <div class="card-body">
+
+            <!---------- MOVIE INFO CDOE HERE ------------->
+
+            <!---------- MOVIE INFO CDOE HERE ------------->
+
+        </div>
+    </div>
+
+    <!-------------- END MOVIE INFO CARD ------------------------->
+
+
+    <br>
+    <br>
+
+    <!-------------- STREAMING INFO ------------------------->
+    <div class="card mt-4">
+        <h5 class="card-header" id="movie-title">Can You Stream It?</h5>
+        <div class="card-body">
+
+            <!---------- STREAMING CDOE HERE ------------->
+
+        </div>
+    </div>
+
+    <!-------------- END STREAMING INFO ------------------------->
+
+</div>
+
+
+    <!-- Jquery & Javascript-->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <script src="app.js"></script>
 </body>
+
 </html>
