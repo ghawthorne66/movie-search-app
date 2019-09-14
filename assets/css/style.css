@@ -1,0 +1,38 @@
+body {
+    background: lightslategray;
+}
+
+h6{
+    display:inline;
+    padding-right: 8px;
+}
+
+
+/* ------------ Review/Ratings ------------------*/
+#imdb-img{
+    max-width: 50px ;
+}
+
+#rt-audience-img{
+    max-width: 28px ;
+}
+
+#rt-fresh-img{
+    max-width: 28px ;
+}
+
+#imdb-score, #rt-aud-score, #rt-fresh-score{
+    float:right;
+    font-weight: bolder;
+
+}
+
+/* ----------- Favorite Heart -----------*/
+.fa-heart{
+    float:right;
+    cursor: pointer;
+}
+
+.fa-heart:hover::before{
+    color:palevioletred;
+}
