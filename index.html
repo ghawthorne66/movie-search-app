@@ -12,7 +12,7 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css">
-    <link rel="stylesheet" href="INSERT_ASSET_FOR_REST">
+    <!-- <link rel="stylesheet" href="INSERT_ASSET_FOR_REST"> -->
     <link rel="stylesheet" href="assets/css/style.css">
 
 </head>
@@ -26,10 +26,10 @@
         <!------------ MOVIE SEARCH FORM --------------------->
         <form>
             <div class="form-row mt-5">
-                <label for="movie-search"></label>
-                <input type="email" class="form-control shadow" id="moive-input" placeholder="Enter Movie Title">
+                <label for="movie-input"></label>
+                <input type="text" class="form-control shadow" id="movie-input" placeholder="Enter Movie Title">
             </div>
-            <button type="submit" class="btn btn-primary float-right mt-3">Search Movie</button>
+            <button type="submit" class="btn btn-primary float-right mt-3" id="submit">Search Movie</button>
         </form>
 
 
@@ -41,7 +41,7 @@
         <!-------------- MOVIE INFO & TRAILER CARD ------------------------->
         <div class="card mt-4">
             <h5 class="card-header" id="movie-title">The Lion King</h5>
-            <div class="card-body mr-n3">
+            <div class="card-body mr-n3" id="movie-info">
 
                 <!----------------------- MOVIE INFO------------------->
                 <div class="row">
@@ -115,8 +115,8 @@
                 </div>
 
                 <!--------------------- TRAILER SECTION --------------------->
-                <div class="embed-responsive embed-responsive-16by9">
-                        <iframe id="yt-trailer" class="embed-responsive-item pr-3" src="https://www.youtube.com/embed/hY7xBISLBIA"  allowfullscreen></iframe>
+                <div class="embed-responsive embed-responsive-16by9" id="trailer">
+                        <!-- <iframe id="yt-trailer" class="embed-responsive-item pr-3" src="https://www.youtube.com/embed/hY7xBISLBIA"  allowfullscreen></iframe> -->
                       </div>
 
 
@@ -134,7 +134,7 @@
             <h5 class="card-header" id="movie-title">Can You Stream It?</h5>
             <div class="card-body">
 
-                <!---------- STREAMING CDOE HERE ------------->
+                <!---------- STREAMING CODE HERE ------------->
 
             </div>
         </div>
@@ -148,7 +148,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
-    <script src="app.js"></script>
+    <script src="assets/js/app.js"></script>
 </body>
 
 </html>
