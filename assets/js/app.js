@@ -1,71 +1,5 @@
 
-// displayMovieInfo function re-renders the HTML to display the appropriate content
-$(document).ready(function () {
-    $("#submit").on("click", function(event){
-        event.preventDefault();
 
-        var movie = $("#movie-input").val().trim();
-        $("#movie-input").text("");
-
-        var omdbQueryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
-    
-        // Creating an AJAX call for the specific movie button being clicked
-        $.ajax({
-            url: omdbQueryURL,
-            method: "GET"
-        }).then(function (response) {
-            console.log(response);
-    
-            //Title, Director, Genre, Plot, Poster, Rated, Released, Year, Runtime
-            var director = response.Director;
-            $("#movie-director").text(director);
-    
-            var rating = response.Rated;
-            $("#movie-rated").text(rating);
-    
-            var title = response.Title;
-            $("#movie-title").text(title);
-    
-            var genre = response.Genre;
-            $("#movie-genre").text(genre);
-    
-            var plot = response.Plot;
-            $("#movie-plot").text(plot);
-    
-            var imgURL = response.Poster;
-            $("#movie-poster").attr("src", imgURL);
-    
-            var released = response.Released;
-            $("#movie-release").text(released);
-    
-            var runtime = response.Runtime;
-            $("#movie-runtime").text(runtime);
-    
-            var actors = response.Actors;
-            $("#movie-actors").text(actors);
-    
-            // Youtube Trailer query
-            var youtubeQueryURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=" + movie + " trailer&key=AIzaSyANwe_R8GJEK-5rYI2aufq2Gh2HZjQcOJI";
-            
-            $.ajax({
-                url: youtubeQueryURL,
-                method: "GET"
-            }).then(function(response){
-                console.log(response);
-
-                // Clears out current placeholder trailer
-                $("#trailer").empty();
-
-                // Adds trailer to page
-                var trailer = $("<iframe>").addClass("embed-responsive-item pr-3");
-                trailer.attr("src", "https://www.youtube.com/embed/" + response.items[0].id.videoId);
-                $("#trailer").append(trailer);
-            })
-        });
-
-
-    })
-})
 
 //---------GOOGLE MAPS---------//
 
@@ -76,6 +10,8 @@ $(document).ready(function () {
     let currentInfoWindow;
     let service;
     let infoPane;
+    let markers = [];
+
     function initMap() {
       // Initialize variables
       bounds = new google.maps.LatLngBounds();
@@ -84,12 +20,12 @@ $(document).ready(function () {
 
       infoPane = document.getElementById('panel');
 
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 5
-        });
-      }
+      // function initMap() {
+      //   var map = new google.maps.Map(document.getElementById('map'), {
+      //     center: {lat: -34.397, lng: 150.644},
+      //     zoom: 5
+      //   });
+      //}
 
       // Try HTML5 geolocation
       if (navigator.geolocation) {
@@ -100,7 +36,7 @@ $(document).ready(function () {
           };
           map = new google.maps.Map(document.getElementById('map'), {
             center: pos,
-            zoom: 2
+            zoom: 12
           });
           bounds.extend(pos);
 
@@ -110,7 +46,7 @@ $(document).ready(function () {
           map.setCenter(pos);
 
           // Call Places Nearby Search on user's location
-          getNearbyPlaces(pos);
+          getNearbyPlaces(pos, "91910");
         }, () => {
           // Browser supports geolocation, but user has denied permission
           handleLocationError(true, infoWindow);
@@ -139,19 +75,36 @@ $(document).ready(function () {
       currentInfoWindow = infoWindow;
 
       // Call Places Nearby Search on the default location
-      getNearbyPlaces(pos);
+      getNearbyPlaces(pos, "91910");
     }
 
     // Perform a Places Nearby Search Request
-    function getNearbyPlaces(position) {
-      let request = {
-        location: position,
-        rankBy: google.maps.places.RankBy.DISTANCE,
-        keyword: 'movie-theater'
-      };
+    function getNearbyPlaces(position, query) {
+      console.log("----------------> query: " + query);
 
+      var request = {
+        location: position,
+        radius: '500',
+        query: query,
+        type: ['movie_theater']
+      };
+      
       service = new google.maps.places.PlacesService(map);
-      service.nearbySearch(request, nearbyCallback);
+      service.textSearch(request, nearbyCallback);
+
+
+
+      // let request = {
+      //   location: position,
+      //   rankBy: google.maps.places.RankBy.DISTANCE,
+      //   //query: '90260',
+      //   keyword: 'Movie theater',
+      //   //type: ['movie_theater']
+      //   //radius: 1000
+      // };
+
+      // service = new google.maps.places.PlacesService(map);
+      // service.nearbySearch(request, nearbyCallback);
     }
 
     // Handle the results (up to 20) of the Nearby Search
@@ -164,11 +117,19 @@ $(document).ready(function () {
     // Set markers at the location of each place result
     function createMarkers(places) {
       places.forEach(place => {
+        console.log("----------------------------------")
+        console.log(" ")
+        console.log(" ")
+        console.log(" ")
+        console.log("Result: " + JSON.stringify(place));
+        console.log("Location: " + place.geometry.location);
+        map.setCenter(place.geometry.location);
         let marker = new google.maps.Marker({
           position: place.geometry.location,
           map: map,
           title: place.name
         });
+        markers.push(marker);
 
         // Add click listener to each marker
         google.maps.event.addListener(marker, 'click', () => {
@@ -191,7 +152,6 @@ $(document).ready(function () {
  
       map.fitBounds(bounds);
     }
-
  
     // InfoWindow to display details above the marker
     function showDetails(placeResult, marker, status) {
@@ -210,9 +170,6 @@ $(document).ready(function () {
       }
     }
 
-
-
-    
     // Displays place details in a sidebar
     function showPanel(placeResult) {
       // If infoPane is already open, close it
@@ -265,4 +222,90 @@ $(document).ready(function () {
 
       
     }
+
+    function deleteMarkers() {
+      for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(null);
+      }
+    }
 //---------------------END GOOGLE MAPS------------------------//
+
+// displayMovieInfo function re-renders the HTML to display the appropriate content
+$(document).ready(function () {
+  $("#submit").on("click", function(event){
+      event.preventDefault();
+
+      var movie = $("#movie-input").val().trim();
+      $("#movie-input").text("");
+
+      var omdbQueryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
+  
+      // Creating an AJAX call for the specific movie button being clicked
+      $.ajax({
+          url: omdbQueryURL,
+          method: "GET"
+      }).then(function (response) {
+          console.log(response);
+  
+          //Title, Director, Genre, Plot, Poster, Rated, Released, Year, Runtime
+          var director = response.Director;
+          $("#movie-director").text(director);
+  
+          var rating = response.Rated;
+          $("#movie-rated").text(rating);
+  
+          var title = response.Title;
+          $("#movie-title").text(title);
+  
+          var genre = response.Genre;
+          $("#movie-genre").text(genre);
+  
+          var plot = response.Plot;
+          $("#movie-plot").text(plot);
+  
+          var imgURL = response.Poster;
+          $("#movie-poster").attr("src", imgURL);
+  
+          var released = response.Released;
+          $("#movie-release").text(released);
+  
+          var runtime = response.Runtime;
+          $("#movie-runtime").text(runtime);
+  
+          var actors = response.Actors;
+          $("#movie-actors").text(actors);
+  
+          // Youtube Trailer query
+          var youtubeQueryURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=" + movie + " trailer&key=AIzaSyANwe_R8GJEK-5rYI2aufq2Gh2HZjQcOJI";
+          
+          $.ajax({
+              url: youtubeQueryURL,
+              method: "GET"
+          }).then(function(response){
+              console.log(response);
+
+              // Clears out current placeholder trailer
+              $("#trailer").empty();
+
+              // Adds trailer to page
+              var trailer = $("<iframe>").addClass("embed-responsive-item pr-3");
+              trailer.attr("src", "https://www.youtube.com/embed/" + response.items[0].id.videoId);
+              $("#trailer").append(trailer);
+          })
+      });
+
+
+  })
+
+  $("#search").on("click", function(event){
+    // Clear map 
+    deleteMarkers();
+    console.log("Searching...");
+    console.log($("#zipCode"));
+    var zipCode = $("#zipCode").val();
+    
+    console.log("-----------> Calling on getNearbyPlaces");
+    console.log("-----------> Calling on zipCode: " + zipCode);
+    getNearbyPlaces({ lat: 32.715736, lng: -117.161087 }, zipCode);
+  })
+})
