@@ -35,8 +35,40 @@
 
         <!------------ END MOVIE SEARCH FORM --------------------->
 
+
+
+
         <br>
         <br>
+
+        <!-------------- FAVORITE SECTION ------------------------->
+        <div class="card my-4" id="favorite-section">
+            <h5 class="card-header">Saved Favorites</h5>
+            <div class="card-body" id="list-favorites">
+
+                <!-------- INSERT FAVORITE CARDS HERE ------------>
+                <div class="card" id="favorite-card">
+                    <img src="https://m.media-amazon.com/images/M/MV5BYTYxNGMyZTYtMjE3MS00MzNjLWFjNmYtMDk3N2FmM2JiM2M1XkEyXkFqcGdeQXVyNjY5NDU4NzI@._V1_SX300.jpg"
+                        class="card-img-top" alt="...">
+                    <div class="card-body" id="fav-buttons-below">
+                        <div class="btn-group" id="fav-info-buttons">
+                            <button type="button" class="btn btn-secondary btn-sm btn-success">Info</button>
+                            <button type="button" class="btn btn-secondary  btn-sm btn-danger">Remove</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-------- END FAVORITE CARDS ---------->
+
+            </div>
+        </div>
+
+        <!-------------- END FAVORITES ------------------------->
+
+
+
+
+
 
         <!-------------- MOVIE INFO & TRAILER CARD ------------------------->
         <div class="card mt-4">
@@ -45,15 +77,45 @@
 
                 <!----------------------- MOVIE INFO------------------->
                 <div class="row">
+
+
+                    <!--MOVIE RATINGS & FAV-->
+                    <div class="col-12">
+
+                        <div class="d-flex bd-highlight mt-n2">
+
+                            <!--------- Favorite Icon  ------->
+                            <div class="mr-auto p-2 bd-highlight">
+                                <i class="fas fa-heart fa-lg" id="fav-heart"></i>
+                            </div>
+
+                            <!--------- Freshness Icon  ------->
+                            <div class="p-2 bd-highlight"><img src="assets/images/fresh-score.png"
+                                    alt="Rotten Tomatoes Freshness" id="rt-fresh-img"><span
+                                    id="rt-fresh-score">89%</span></div>
+
+                            <!--------- Audience Icon  ------->
+                            <div class="p-2 bd-highlight"><img src="assets/images/tr-audience.png"
+                                    alt="Rotten Tomatoes Audience" id="rt-audience-img"><span
+                                    id="rt-aud-score">99%</span></div>
+
+                            <!--------- IMDB Icon  ------->
+                            <div class="p-2 bd-highlight"><img src="assets/images/imdb.png" alt="IMDB"
+                                    id="imdb-img"><span id="imdb-score">73%</span></div>
+                        </div>
+
+
+                    </div>
+
                     <!-- MOVIE POSTER-->
-                    <div class="col-4">
+                    <div class="col-lg-5 col-12">
                         <img src="https://m.media-amazon.com/images/M/MV5BYTYxNGMyZTYtMjE3MS00MzNjLWFjNmYtMDk3N2FmM2JiM2M1XkEyXkFqcGdeQXVyNjY5NDU4NzI@._V1_SX300.jpg"
-                            class="img-fluid rounded" alt="Movie Poster" id="movie-poster">
+                            class="w-100 img-fluid rounded pr-4" alt="Movie Poster" id="movie-poster">
                     </div>
 
 
                     <!-- MOVE DETAILS ---->
-                    <div class="col-6 ml-n5">
+                    <div class="col-lg-7 col-12 ">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item my-n1">
                                 <h6>Genre:</h6>
@@ -70,7 +132,7 @@
                             <li class="list-group-item my-n1">
                                 <h6>Release Date:</h6>
                                 <h6 id="movie-release">Aug. 3rd, 1999</h6>
-                            </li> 
+                            </li>
                             <li class="list-group-item my-n1">
                                 <h6>Director:</h6>
                                 <h6 id="movie-director">Christopher Nolan</h6>
@@ -96,28 +158,14 @@
                     </div>
 
 
-                    <!--MOVIE RATINGS & FAV-->
-                    <div class="col-2">
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item border-0"><i class="fas fa-heart fa-lg" id="fav-heart"></i></li>
-                            <li class="list-group-item border-0"><img src="assets/images/imdb.png" alt="IMDB"
-                                    id="imdb-img"><span id="imdb-score">73%</span></li>
-                            <li class="list-group-item border-0"><img src="assets/images/tr-audience.png"
-                                    alt="Rotten Tomatoes Audience" id="rt-audience-img"><span
-                                    id="rt-aud-score">99%</span></li>
-                            <li class="list-group-item border-0"><img src="assets/images/fresh-score.png"
-                                    alt="Rotten Tomatoes Freshness" id="rt-fresh-img"><span
-                                    id="rt-fresh-score">89%</span></li>
-                        </ul>
-
-                    </div>
 
                 </div>
 
                 <!--------------------- TRAILER SECTION --------------------->
-                <div class="embed-responsive embed-responsive-16by9" id="trailer">
-                        <iframe id="yt-trailer" class="embed-responsive-item pr-3" src="https://www.youtube.com/embed/hY7xBISLBIA"  allowfullscreen></iframe>
-                      </div>
+                <div class="embed-responsive embed-responsive-16by9  mt-2 rounded" id="trailer">
+                    <iframe id="yt-trailer" class="embed-responsive-item pr-3"
+                        src="https://www.youtube.com/embed/hY7xBISLBIA" allowfullscreen></iframe>
+                </div>
 
 
             </div>
@@ -127,19 +175,66 @@
 
 
         <br>
-        <br>
 
         <!-------------- STREAMING INFO ------------------------->
         <div class="card my-4">
             <h5 class="card-header" id="movie-title">Can You Stream It?</h5>
+            <div class="card-body px-5">
+
+                <div class="container-fluid">
+                    <div class="row justify-content-md-center ml-0">
+
+                        <div class="col-sm-6 col-md-3 col-xs-6 p-2 mx-auto border-right border-left" id="stream-platform">
+                            <img class="img-fluid mt-1" src="assets/images/netflix.png">
+                            <div class="text-center mt-n2" id="netflix-available"><i class="fas fa-check fa-2x"></i>
+                            </div>
+                            <button type="button" class="btn btn-success btn-block my-1">Watch Now</button>
+                        </div>
+ 
+                        <div class="col-sm-6 col-md-3 col-xs-6 p-2 mx-auto border-right border-left" id="stream-platform">
+                            <img class="img-fluid mt-1" src="assets/images/amazon-prime.png">
+                            <div class="text-center mt-n2" id="netflix-available"><i class="fas fa-times fa-2x"></i>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-md-3 col-xs-6 p-2 mx-auto border-right border-left" id="stream-platform">
+                            <img class="img-fluid mt-1" src="assets/images/amazon-instant.png">
+                            <div class="text-center mt-n2" id="netflix-available"><i class="fas fa-times fa-2x"></i>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-md-3  col-xs-6 p-2 mx-auto border-right border-left" id="stream-platform">
+                            <img class="img-fluid mt-1" src="assets/images/itunes.png">
+                            <div class="text-center mt-n2" id="netflix-available"><i class="fas fa-check fa-2x"></i>
+                            </div>
+                            <button type="button" class="btn btn-success btn-block my-1">Watch Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-------------- END STREAMING INFO ------------------------->
+
+
+
+
+
+
+        <!-------------- MOVIE THEATER INFO ------------------------->
+        <div class="card my-4">
+            <h5 class="card-header" id="theater-search">Theater Information</h5>
             <div class="card-body">
 
-                <!---------- STREAMING CDOE HERE ------------->
+                <!---------- GREG _ CODE HERE ------------->
 
             </div>
         </div>
 
-        <!-------------- END STREAMING INFO ------------------------->
+        <!-------------- END THEATER INFO ------------------------->
+
 
     </div>
 
