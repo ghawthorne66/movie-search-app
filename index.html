@@ -26,10 +26,10 @@
         <!------------ MOVIE SEARCH FORM --------------------->
         <form>
             <div class="form-row mt-5">
-                <label for="movie-search"></label>
-                <input type="" class="form-control shadow" id="movie-btn" placeholder="Enter Movie Title">
+                <label for="movie-input"></label>
+                <input type="" class="form-control shadow" id="movie-input" placeholder="Enter Movie Title">
             </div>
-            <button type="submit" class="btn btn-primary float-right mt-3">Search Movie</button>
+            <button type="submit" class="btn btn-primary float-right mt-3" id="submit">Search Movie</button>
         </form>
 
 
@@ -73,7 +73,7 @@
                             </li> 
                             <li class="list-group-item my-n1">
                                 <h6>Director:</h6>
-                                <h6 id="movie-director ">Christopher Nolan</h6>
+                                <h6 id="movie-director">Christopher Nolan</h6>
                             </li>
                             <li class="list-group-item my-n1">
                                 <h6>Actors:</h6>
@@ -115,7 +115,7 @@
                 </div>
 
                 <!--------------------- TRAILER SECTION --------------------->
-                <div class="embed-responsive embed-responsive-16by9">
+                <div class="embed-responsive embed-responsive-16by9" id="trailer">
                         <iframe id="yt-trailer" class="embed-responsive-item pr-3" src="https://www.youtube.com/embed/hY7xBISLBIA"  allowfullscreen></iframe>
                       </div>
 
