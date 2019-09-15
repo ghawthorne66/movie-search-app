@@ -14,6 +14,13 @@
 
       infoPane = document.getElementById('panel');
 
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 5
+        });
+      }
+
       // Try HTML5 geolocation
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position => {
@@ -23,7 +30,7 @@
           };
           map = new google.maps.Map(document.getElementById('map'), {
             center: pos,
-            zoom: 15
+            zoom: 2
           });
           bounds.extend(pos);
 
@@ -46,11 +53,11 @@
 
     // Handle a geolocation error
     function handleLocationError(browserHasGeolocation, infoWindow) {
-      // Set default location to Sydney, Australia
-      pos = { lat: -33.856, lng: 151.215 };
+      // Set default location to SSan Diego, Ca
+      pos = { lat: 32.715736, lng: -117.161087 };
       map = new google.maps.Map(document.getElementById('map'), {
         center: pos,
-        zoom: 15
+        zoom: 50,
       });
 
       // Display an InfoWindow at the map center
@@ -133,6 +140,8 @@
       }
     }
 
+
+
     
     // Displays place details in a sidebar
     function showPanel(placeResult) {
@@ -180,6 +189,9 @@
         infoPane.appendChild(websitePara);
       }
 
+    
       // Open the infoPane
       infoPane.classList.add("open");
+
+      
     }

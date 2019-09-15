@@ -40,14 +40,15 @@ h6{
 
 #map {
     height: 100%;
+    padding: 5%;
     background-color: grey;
   }
 
   html,
   body {
     height: 100%;
-    margin: 0;
-    padding: 0;
+    margin: 5px;
+    padding: 5px;
   }
 
   
@@ -64,22 +65,21 @@ h6{
   }
 
   .open {
-    width: 250px;
+    width: 300px;
   }
 
   /* Styling for place details */
   .hero {
     width: 100%;
     height: auto;
-    max-height: 166px;
+    max-height: 200px;
     display: block;
   }
 
   .place,
   p {
     font-family: 'open sans', arial, sans-serif;
-    padding-left: 18px;
-    padding-right: 18px;
+    
   }
 
   .details {
@@ -89,4 +89,15 @@ h6{
   a {
     text-decoration: none;
     color: cadetblue;
+  }
+
+
+  /* .text-center {
+    font-size: 15px;
+  } */
+  .map-text {
+    color: black;
+    background-color: bisque;
+    font-size: 50px;
+    
   }
