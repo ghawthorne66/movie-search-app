@@ -36,3 +36,42 @@ h6{
 .fa-heart:hover::before{
     color:palevioletred;
 }
+
+/* -------------- Favorite Section -------------- */ 
+#fav-buttons-below, #fav-info-buttons{
+    width:100%;
+    padding:0;
+}
+
+
+#favorite-card{
+    max-width: 145px;
+    float:left;
+    margin: 4px 4px;
+}
+
+/* --------------- Streaming Section ------------------ */
+
+#stream-platform{
+    max-width:200px;
+    width:100%;
+    
+}
+
+.fa-check{
+    color:green;
+    font-size: 5vw;
+}
+
+.fa-times{
+    color:red;
+    font-size: 5vw;
+}
+
+
+
+/* -------------- Addtional Responsiveness outside of Bootstrap ----- */
+@media screen and (min-width: 1200px) {
+    .fa-check, .fa-times {
+       font-size: 60px;
+    }
