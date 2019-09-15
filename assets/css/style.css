@@ -14,7 +14,7 @@ h6{
 }
 
 #rt-audience-img{
-    max-width: 28px ;
+    max-width: 22px ;
 }
 
 #rt-fresh-img{
@@ -22,14 +22,13 @@ h6{
 }
 
 #imdb-score, #rt-aud-score, #rt-fresh-score{
-    float:right;
     font-weight: bolder;
+    padding-left:2px
 
 }
 
 /* ----------- Favorite Heart -----------*/
 .fa-heart{
-    float:right;
     cursor: pointer;
 }
 
@@ -75,3 +74,4 @@ h6{
     .fa-check, .fa-times {
        font-size: 60px;
     }
+}

@@ -77,15 +77,45 @@
 
                 <!----------------------- MOVIE INFO------------------->
                 <div class="row">
+
+
+                    <!--MOVIE RATINGS & FAV-->
+                    <div class="col-12">
+
+                        <div class="d-flex bd-highlight mt-n2">
+
+                            <!--------- Favorite Icon  ------->
+                            <div class="mr-auto p-2 bd-highlight">
+                                <i class="fas fa-heart fa-lg" id="fav-heart"></i>
+                            </div>
+
+                            <!--------- Freshness Icon  ------->
+                            <div class="p-2 bd-highlight"><img src="assets/images/fresh-score.png"
+                                    alt="Rotten Tomatoes Freshness" id="rt-fresh-img"><span
+                                    id="rt-fresh-score">89%</span></div>
+
+                            <!--------- Audience Icon  ------->
+                            <div class="p-2 bd-highlight"><img src="assets/images/tr-audience.png"
+                                    alt="Rotten Tomatoes Audience" id="rt-audience-img"><span
+                                    id="rt-aud-score">99%</span></div>
+
+                            <!--------- IMDB Icon  ------->
+                            <div class="p-2 bd-highlight"><img src="assets/images/imdb.png" alt="IMDB"
+                                    id="imdb-img"><span id="imdb-score">73%</span></div>
+                        </div>
+
+
+                    </div>
+
                     <!-- MOVIE POSTER-->
-                    <div class="col-4">
+                    <div class="col-lg-5 col-12">
                         <img src="https://m.media-amazon.com/images/M/MV5BYTYxNGMyZTYtMjE3MS00MzNjLWFjNmYtMDk3N2FmM2JiM2M1XkEyXkFqcGdeQXVyNjY5NDU4NzI@._V1_SX300.jpg"
-                            class="img-fluid rounded" alt="Movie Poster" id="movie-poster">
+                            class="w-100 img-fluid rounded pr-4" alt="Movie Poster" id="movie-poster">
                     </div>
 
 
                     <!-- MOVE DETAILS ---->
-                    <div class="col-6 ml-n5">
+                    <div class="col-lg-7 col-12 ">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item my-n1">
                                 <h6>Genre:</h6>
@@ -128,21 +158,6 @@
                     </div>
 
 
-                    <!--MOVIE RATINGS & FAV-->
-                    <div class="col-2">
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item border-0"><i class="fas fa-heart fa-lg" id="fav-heart"></i></li>
-                            <li class="list-group-item border-0"><img src="assets/images/imdb.png" alt="IMDB"
-                                    id="imdb-img"><span id="imdb-score">73%</span></li>
-                            <li class="list-group-item border-0"><img src="assets/images/tr-audience.png"
-                                    alt="Rotten Tomatoes Audience" id="rt-audience-img"><span
-                                    id="rt-aud-score">99%</span></li>
-                            <li class="list-group-item border-0"><img src="assets/images/fresh-score.png"
-                                    alt="Rotten Tomatoes Freshness" id="rt-fresh-img"><span
-                                    id="rt-fresh-score">89%</span></li>
-                        </ul>
-
-                    </div>
 
                 </div>
 
@@ -169,28 +184,32 @@
                 <div class="container-fluid">
                     <div class="row justify-content-md-center ml-0">
 
-                    <div class="col-sm-6 col-md-3 col-xs-6 p-0 mx-auto" id="stream-platform">
-                        <img class="img-fluid mt-1" src="assets/images/netflix.png">
-                        <div class="text-center mt-n2" id="netflix-available"><i class="fas fa-check fa-2x"></i></div>
-                        <button type="button" class="btn btn-success btn-block my-1">Watch Now</button>
-                    </div>
+                        <div class="col-sm-6 col-md-3 col-xs-6 p-2 mx-auto border-right border-left" id="stream-platform">
+                            <img class="img-fluid mt-1" src="assets/images/netflix.png">
+                            <div class="text-center mt-n2" id="netflix-available"><i class="fas fa-check fa-2x"></i>
+                            </div>
+                            <button type="button" class="btn btn-success btn-block my-1">Watch Now</button>
+                        </div>
+ 
+                        <div class="col-sm-6 col-md-3 col-xs-6 p-2 mx-auto border-right border-left" id="stream-platform">
+                            <img class="img-fluid mt-1" src="assets/images/amazon-prime.png">
+                            <div class="text-center mt-n2" id="netflix-available"><i class="fas fa-times fa-2x"></i>
+                            </div>
+                        </div>
 
-                    <div class="col-sm-6 col-md-3 col-xs-6 p-0 mx-auto" id="stream-platform">
-                        <img class="img-fluid mt-1" src="assets/images/amazon-prime.png">
-                        <div class="text-center mt-n2" id="netflix-available"><i class="fas fa-times fa-2x"></i></div>
-                    </div>
+                        <div class="col-sm-6 col-md-3 col-xs-6 p-2 mx-auto border-right border-left" id="stream-platform">
+                            <img class="img-fluid mt-1" src="assets/images/amazon-instant.png">
+                            <div class="text-center mt-n2" id="netflix-available"><i class="fas fa-times fa-2x"></i>
+                            </div>
+                        </div>
 
-                    <div class="col-sm-6 col-md-3 col-xs-6 p-0 mx-auto" id="stream-platform">
-                        <img class="img-fluid mt-1" src="assets/images/amazon-instant.png">
-                        <div class="text-center mt-n2" id="netflix-available"><i class="fas fa-times fa-2x"></i></div>
+                        <div class="col-sm-6 col-md-3  col-xs-6 p-2 mx-auto border-right border-left" id="stream-platform">
+                            <img class="img-fluid mt-1" src="assets/images/itunes.png">
+                            <div class="text-center mt-n2" id="netflix-available"><i class="fas fa-check fa-2x"></i>
+                            </div>
+                            <button type="button" class="btn btn-success btn-block my-1">Watch Now</button>
+                        </div>
                     </div>
-
-                    <div class="col-sm-6 col-md-3  col-xs-6 p-0 mx-auto" id="stream-platform">
-                        <img class="img-fluid mt-1" src="assets/images/itunes.png">
-                        <div class="text-center mt-n2" id="netflix-available"><i class="fas fa-check fa-2x"></i></div>
-                        <button type="button" class="btn btn-success btn-block my-1">Watch Now</button>
-                    </div>
-                </div>
                 </div>
             </div>
 
