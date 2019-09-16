@@ -252,6 +252,11 @@ $(document).ready(function () {
           var actors = response.Actors;
           $("#movie-actors").text(actors);
   
+          var ratings = response.Ratings;
+          $("#movie-ratings").text(ratings);
+          
+          
+          
           // Youtube Trailer query
           var youtubeQueryURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=" + movie + " trailer&key=AIzaSyANwe_R8GJEK-5rYI2aufq2Gh2HZjQcOJI";
           
