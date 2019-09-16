@@ -49,13 +49,13 @@ h6 {
 
 /* -------------- Favorite Section -------------- */
 
-#fav-buttons-below,
-#fav-info-buttons {
+.fav-buttons-below,
+.fav-info-buttons {
     width: 100%;
     padding: 0;
 }
 
-#favorite-card {
+.favorite-card {
     max-width: 145px;
     float: left;
     margin: 4px 4px;
