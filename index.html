@@ -225,10 +225,33 @@
 
         <!-------------- MOVIE THEATER INFO ------------------------->
         <div class="card my-4">
-            <h5 class="card-header" id="theater-search">Theater Information</h5>
+            <h5 class="card-header" id="theater-search">Find a Theater Near You </h5>
+            
             <div class="card-body">
 
-                <!---------- GREG _ CODE HERE ------------->
+                <!---------- GOOGLE MAPS CODE ------------->
+
+             <!---zip code input field-->
+                <input class="form-control-default" type="text" style="height:26px" style="width:45px" id="zipCode" placeholder="Enter Zip Code"></input>
+                <!---zip code submit button--->
+                <button type="submit" class="btn btn-success btn-md" id="search">
+                        <span class="glyphicons glyphicons-search" aria-hidden="true"></span>Search by Zip
+                        </button>
+
+                <!--Google map-->
+            <div id="map-container-google-2" class="z-depth-1-half map-container" style="height: 800px">
+            
+                  <!-- The slide-out panel for showing place details -->
+                  <div id="panel"></div>
+                
+                  <!-- Map appears here -->
+                  <div id="map"></div>
+                  
+            
+              </div>
+               <!--End Google Maps-->
+            
+            
 
             </div>
         </div>
@@ -239,11 +262,20 @@
     </div>
 
 
+
+
     <!-- Jquery & Javascript-->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-
+    
+    <!--Google Maps API ID-->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZO_pTbNs6Aq-YWHEM7Z_42_eqTDuOwd4&libraries=places&callback=initMap">
+    </script>
     <script src="assets/js/app.js"></script>
-</body>
 
+
+    
+
+    
+</body>
 </html>
