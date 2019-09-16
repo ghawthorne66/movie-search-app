@@ -8,7 +8,7 @@ let service;
 let infoPane;
 let markers = [];
 
-$(document).ready(function() {
+$(document).ready(function () {
 
     // Gets movies from local storage; if empty, sets movies to an empty array
     var movies = JSON.parse(localStorage.getItem("movies") || "[]");
@@ -20,7 +20,7 @@ $(document).ready(function() {
         }
     }
 
-    $("#submit").on("click", function(event) {
+    $("#submit").on("click", function (event) {
         event.preventDefault();
 
         // Gets movie entered by user
@@ -32,7 +32,7 @@ $(document).ready(function() {
         getMovieInfo(movie);
     })
 
-    $("#search").on("click", function(event) {
+    $("#search").on("click", function (event) {
         // Clear map 
         deleteMarkers();
         console.log("Searching...");
@@ -45,7 +45,7 @@ $(document).ready(function() {
     })
 
     // Adds movie to favorites when heart is clicked
-    $("#fav-heart").on("click", function() {
+    $("#fav-heart").on("click", function () {
         // Add movie to favorites in local storage
         movies.push({ poster: $("#movie-poster").attr("src"), title: $("#movie-title").text() });
         localStorage.setItem("movies", JSON.stringify(movies));
@@ -55,12 +55,12 @@ $(document).ready(function() {
     })
 
     // When info is clicked, the movie's information will be displayed
-    $("#list-favorites").on("click", ".info-btn", function() {
+    $("#list-favorites").on("click", ".info-btn", function () {
         getMovieInfo($(this).parent().parent().parent().attr("data-movie"));
     })
 
     // Removes movie from favorites
-    $("#list-favorites").on("click", ".remove-btn", function() {
+    $("#list-favorites").on("click", ".remove-btn", function () {
         var movieTitle = $(this).parent().parent().parent().attr("data-movie");
 
         // Returns first object in movie array that has a matching movie title to the current movie being removed
@@ -89,7 +89,7 @@ $(document).ready(function() {
         $.ajax({
             url: omdbQueryURL,
             method: "GET"
-        }).then(function(response) {
+        }).then(function (response) {
             console.log(response);
 
             //Title, Director, Genre, Plot, Poster, Rated, Released, Year, Runtime
@@ -125,14 +125,12 @@ $(document).ready(function() {
 
             var ratedRt = response.Ratings[1].Value;
             $("#rt-aud-score").text(ratedRt);
-            
+
             var ratedMc = response.Ratings[2].Value;
             $("#metacritic-score").text(ratedMc);
 
-
-
         })
-        
+
 
         // Youtube Trailer query
         var youtubeQueryURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=" + movie + " trailer&key=AIzaSyANwe_R8GJEK-5rYI2aufq2Gh2HZjQcOJI";
@@ -140,7 +138,7 @@ $(document).ready(function() {
         $.ajax({
             url: youtubeQueryURL,
             method: "GET"
-        }).then(function(response) {
+        }).then(function (response) {
             console.log(response);
 
             // Clears out current placeholder trailer
@@ -154,7 +152,39 @@ $(document).ready(function() {
 
 
 
-        
+       // Streaming Platforms Info
+
+        var streamQueryURL = "https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/lookup?term=" + movie + "&country=uk";
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": streamQueryURL,
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-host": "utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com",
+                "x-rapidapi-key": "5f71d6d19cmsh134bbd07fd39bcfp14243ajsncf174091dad8"
+            }
+        }
+
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+
+            for (var i = 0; i < response.results[0].locations.length; i++) {
+                console.log(response.results[0].locations[i].display_name);
+
+                if (response.results[0].locations[i].display_name === "Amazon Prime") {
+                    var icon = $("<i>").attr("class", "fas fa-check fa-2x");
+                    var streamButton = $("<a>").attr("href",response.results[0].locations[i].url).attr("class", "button btn btn-success btn-block my-1").attr("target","_blank").text("Watch Now")
+                    $("#amazon-prime-available").empty();
+                    $("#amazon-prime-available").append(icon);
+                    $("#stream-platform-amazon-prime").append(streamButton);
+                }
+            }
+        });
+
+
+
+
     }
 
     // Adds a movie card to the list-favorites div
