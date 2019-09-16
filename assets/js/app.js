@@ -1,4 +1,3 @@
-// Variables for google maps functionality
 let pos;
 let map;
 let bounds;
@@ -125,14 +124,14 @@ $(document).ready(function() {
 
             var ratedRt = response.Ratings[1].Value;
             $("#rt-aud-score").text(ratedRt);
-            
+
             var ratedMc = response.Ratings[2].Value;
             $("#metacritic-score").text(ratedMc);
 
 
 
         })
-        
+
 
         // Youtube Trailer query
         var youtubeQueryURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=" + movie + " trailer&key=AIzaSyANwe_R8GJEK-5rYI2aufq2Gh2HZjQcOJI";
@@ -154,7 +153,7 @@ $(document).ready(function() {
 
 
 
-        
+
     }
 
     // Adds a movie card to the list-favorites div
@@ -223,7 +222,7 @@ function initMap() {
 
 // Handle a geolocation error
 function handleLocationError(browserHasGeolocation, infoWindow) {
-    // Set default location to SSan Diego, Ca
+    // Set default location to San Diego, Ca
     pos = { lat: 32.715736, lng: -117.161087 };
     map = new google.maps.Map(document.getElementById('map'), {
         center: pos,
@@ -298,185 +297,82 @@ function createMarkers(places) {
         // Adjust the map bounds to include the location of this marker
         bounds.extend(place.geometry.location);
     });
+    
+    // InfoWindow to display details above the marker
+    function showDetails(placeResult, marker, status) {
+        if (status == google.maps.places.PlacesServiceStatus.OK) {
+            let placeInfowindow = new google.maps.InfoWindow();
+            let rating = "None";
+            if (placeResult.rating) rating = placeResult.rating;
+            placeInfowindow.setContent('<div><strong>' + placeResult.name +
+                '</strong><br>' + 'Rating: ' + rating + '</div>');
+            placeInfowindow.open(marker.map, marker);
+            currentInfoWindow.close();
+            currentInfoWindow = placeInfowindow;
+            showPanel(placeResult);
+        } else {
+            console.log('showDetails failed: ' + status);
+        }
+    }
+    
+    // Displays place details in a sidebar
+    function showPanel(placeResult) {
+        // If infoPane is already open, close it
+        if (infoPane.classList.contains("open")) {
+            infoPane.classList.remove("open");
+        }
+    
+        // Clear the previous details
+        while (infoPane.lastChild) {
+            infoPane.removeChild(infoPane.lastChild);
+        }
+    
+        if (placeResult.photos) {
+            let firstPhoto = placeResult.photos[0];
+            let photo = document.createElement('img');
+            photo.classList.add('hero');
+            photo.src = firstPhoto.getUrl();
+            infoPane.appendChild(photo);
+        }
+    
+        // Add place details with text
+        let name = document.createElement('h1');
+        name.classList.add('place');
+        name.textContent = placeResult.name;
+        infoPane.appendChild(name);
+        if (placeResult.rating) {
+            let rating = document.createElement('p');
+            rating.classList.add('details');
+            rating.textContent = `Rating: ${placeResult.rating} \u272e`;
+            infoPane.appendChild(rating);
+        }
+        let address = document.createElement('p');
+        address.classList.add('details');
+        address.textContent = placeResult.formatted_address;
+        infoPane.appendChild(address);
+        if (placeResult.website) {
+            let websitePara = document.createElement('p');
+            let websiteLink = document.createElement('a');
+            let websiteUrl = document.createTextNode(placeResult.website);
+            websiteLink.appendChild(websiteUrl);
+            websiteLink.title = placeResult.website;
+            websiteLink.href = placeResult.website;
+            websitePara.appendChild(websiteLink);
+            infoPane.appendChild(websitePara);
+        }
+    
+    
+        // Open the infoPane
+        infoPane.classList.add("open");
+    
+    }
+    
+    function deleteMarkers() {
+        for (var i = 0; i < markers.length; i++) {
+            markers[i].setMap(null);
+        }
+    }
 
 
     map.fitBounds(bounds);
 }
-
-// InfoWindow to display details above the marker
-function showDetails(placeResult, marker, status) {
-    if (status == google.maps.places.PlacesServiceStatus.OK) {
-        let placeInfowindow = new google.maps.InfoWindow();
-        let rating = "None";
-        if (placeResult.rating) rating = placeResult.rating;
-        placeInfowindow.setContent('<div><strong>' + placeResult.name +
-            '</strong><br>' + 'Rating: ' + rating + '</div>');
-        placeInfowindow.open(marker.map, marker);
-        currentInfoWindow.close();
-        currentInfoWindow = placeInfowindow;
-        showPanel(placeResult);
-    } else {
-        console.log('showDetails failed: ' + status);
-    }
-}
-
-// Displays place details in a sidebar
-function showPanel(placeResult) {
-    // If infoPane is already open, close it
-    if (infoPane.classList.contains("open")) {
-        infoPane.classList.remove("open");
-    }
-
-    // Clear the previous details
-    while (infoPane.lastChild) {
-        infoPane.removeChild(infoPane.lastChild);
-    }
-
-    if (placeResult.photos) {
-        let firstPhoto = placeResult.photos[0];
-        let photo = document.createElement('img');
-        photo.classList.add('hero');
-        photo.src = firstPhoto.getUrl();
-        infoPane.appendChild(photo);
-    }
-
-    // Add place details with text
-    let name = document.createElement('h1');
-    name.classList.add('place');
-    name.textContent = placeResult.name;
-    infoPane.appendChild(name);
-    if (placeResult.rating) {
-        let rating = document.createElement('p');
-        rating.classList.add('details');
-        rating.textContent = `Rating: ${placeResult.rating} \u272e`;
-        infoPane.appendChild(rating);
-    }
-    let address = document.createElement('p');
-    address.classList.add('details');
-    address.textContent = placeResult.formatted_address;
-    infoPane.appendChild(address);
-    if (placeResult.website) {
-        let websitePara = document.createElement('p');
-        let websiteLink = document.createElement('a');
-        let websiteUrl = document.createTextNode(placeResult.website);
-        websiteLink.appendChild(websiteUrl);
-        websiteLink.title = placeResult.website;
-        websiteLink.href = placeResult.website;
-        websitePara.appendChild(websiteLink);
-        infoPane.appendChild(websitePara);
-    }
-
-
-    // Open the infoPane
-    infoPane.classList.add("open");
-
-}
-
-function deleteMarkers() {
-    for (var i = 0; i < markers.length; i++) {
-        markers[i].setMap(null);
-    }
-<<<<<<< HEAD
-//---------------------END GOOGLE MAPS------------------------//
-
-// displayMovieInfo function re-renders the HTML to display the appropriate content
-$(document).ready(function () {
-  $("#submit").on("click", function(event){
-      event.preventDefault();
-
-      var movie = $("#movie-input").val().trim();
-      $("#movie-input").text("");
-
-      var omdbQueryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
-  
-      // Creating an AJAX call for the specific movie button being clicked
-      $.ajax({
-          url: omdbQueryURL,
-          method: "GET"
-      }).then(function (response) {
-          console.log(response);
-  
-          //Title, Director, Genre, Plot, Poster, Rated, Released, Year, Runtime
-          var director = response.Director;
-          $("#movie-director").text(director);
-  
-          var rating = response.Rated;
-          $("#movie-rated").text(rating);
-  
-          var title = response.Title;
-          $("#movie-title").text(title);
-  
-          var genre = response.Genre;
-          $("#movie-genre").text(genre);
-  
-          var plot = response.Plot;
-          $("#movie-plot").text(plot);
-  
-          var imgURL = response.Poster;
-          $("#movie-poster").attr("src", imgURL);
-  
-          var released = response.Released;
-          $("#movie-release").text(released);
-  
-          var runtime = response.Runtime;
-          $("#movie-runtime").text(runtime);
-  
-          var actors = response.Actors;
-          $("#movie-actors").text(actors);
-  
-          // Youtube Trailer query
-          var youtubeQueryURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=" + movie + " trailer&key=AIzaSyANwe_R8GJEK-5rYI2aufq2Gh2HZjQcOJI";
-          
-          $.ajax({
-              url: youtubeQueryURL,
-              method: "GET"
-          }).then(function(response){
-              console.log(response);
-
-              // Clears out current placeholder trailer
-              $("#trailer").empty();
-
-              // Adds trailer to page
-              var trailer = $("<iframe>").addClass("embed-responsive-item pr-3");
-              trailer.attr("src", "https://www.youtube.com/embed/" + response.items[0].id.videoId);
-              $("#trailer").append(trailer);
-          })
-      });
-
-
-  })
-
-  $("#search").on("click", function(event){
-    // Clear map 
-    deleteMarkers();
-    console.log("Searching...");
-    console.log($("#zipCode"));
-    var zipCode = $("#zipCode").val();
-    
-    console.log("-----------> Calling on getNearbyPlaces");
-    console.log("-----------> Calling on zipCode: " + zipCode);
-    getNearbyPlaces({ lat: 32.715736, lng: -117.161087 }, zipCode);
-  })
-})
-    }
-
-
-
-
-    // //----------GRACENOTE API REQUEST--------------
-
-    // // Creating an AJAX call for the specific movie button being clicked
-
-
-    //   var gracenoteQueryURL = "http://data.tmsapi.com/v1.1/movies/showings?startDate=2019-09-16&zip=78701&lat=32.7157%C2%B0&lng=117.1611&radius=99&units=mi&imageText=true" + movie + "&api_key=fu4n5h6x7xfmhq96e8zg8gnn";
-
-    //   // Creating an AJAX call for the specific movie button being clicked
-    //   $.ajax({
-    //     url: gracenoteQueryURL,
-    //     method: "GET"
-    // }).then(function (response) {
-    //     console.log(response);
-    
-=======
-}
->>>>>>> ec470a5650dd7a5f992e49162260e8e929d2f511
