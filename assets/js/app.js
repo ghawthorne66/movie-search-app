@@ -119,18 +119,20 @@ $(document).ready(function() {
 
             var actors = response.Actors;
             $("#movie-actors").text(actors);
-        
-            var ratedIMDB = response.Ratings[2].Value;
-            $("#rt-fresh-score").text(ratedIMDB);
 
-            var ratedRt = response.Ratings[0].Value;
-            $("#imdb-score").text(ratedRt);
+            var ratedIMDB = response.Ratings[0].Value;
+            $("#imdb-score").text(ratedIMDB);
 
-            var ratedMc = response.Ratings[1].Value;
-            $("#rt-audience-img").text(ratedMc);
+            var ratedRt = response.Ratings[1].Value;
+            $("#rt-aud-score").text(ratedRt);
+            
+            var ratedMc = response.Ratings[2].Value;
+            $("#metacritic-score").text(ratedMc);
 
-        
+
+
         })
+        
 
         // Youtube Trailer query
         var youtubeQueryURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=" + movie + " trailer&key=AIzaSyANwe_R8GJEK-5rYI2aufq2Gh2HZjQcOJI";
@@ -149,6 +151,10 @@ $(document).ready(function() {
             trailer.attr("src", "https://www.youtube.com/embed/" + response.items[0].id.videoId);
             $("#trailer").append(trailer);
         });
+
+
+
+        
     }
 
     // Adds a movie card to the list-favorites div
