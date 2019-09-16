@@ -2,82 +2,87 @@ body {
     background: lightslategray;
 }
 
-h6{
-    display:inline;
+h6 {
+    display: inline;
     padding-right: 8px;
 }
 
 
 /* ------------ Review/Ratings ------------------*/
-#imdb-img{
-    max-width: 50px ;
+
+#imdb-img {
+    max-width: 50px;
 }
 
-#rt-audience-img{
-    max-width: 22px ;
+#rt-audience-img {
+    max-width: 22px;
 }
 
-#rt-fresh-img{
-    max-width: 28px ;
+#rt-fresh-img {
+    max-width: 28px;
 }
 
-#imdb-score, #rt-aud-score, #rt-fresh-score{
+#imdb-score,
+#rt-aud-score,
+#metacritic-score {
     font-weight: bolder;
-    padding-left:2px
-
+    padding-left: 2px
 }
+
 
 /* ----------- Favorite Heart -----------*/
-.fa-heart{
+
+.fa-heart {
     cursor: pointer;
 }
 
-.fa-heart:hover::before{
-    color:palevioletred;
+.fa-heart:hover::before {
+    color: palevioletred;
 }
 
- #map {
+#map {
     height: 100%;
     padding: 5%;
     background-color: grey;
-  } 
-
-
-/* -------------- Favorite Section -------------- */ 
-#fav-buttons-below, #fav-info-buttons{
-    width:100%;
-    padding:0;
 }
 
 
-#favorite-card{
+/* -------------- Favorite Section -------------- */
+
+.fav-buttons-below,
+.fav-info-buttons {
+    width: 100%;
+    padding: 0;
+}
+
+.favorite-card {
     max-width: 145px;
-    float:left;
+    float: left;
     margin: 4px 4px;
 }
 
+
 /* --------------- Streaming Section ------------------ */
 
-#stream-platform{
-    max-width:200px;
-    width:100%;
-    
+#stream-platform {
+    max-width: 200px;
+    width: 100%;
 }
 
-.fa-check{
-    color:green;
+.fa-check {
+    color: green;
     font-size: 5vw;
 }
 
-.fa-times{
-    color:red;
+.fa-times {
+    color: red;
     font-size: 5vw;
 }
 
 
-  
-  /* ----------Styling for an info pane that slides out from the left. Hidden by default. ------*/
-  #panel {
+/* ----------Styling for an info pane that slides out from the left. Hidden by default. ------*/
+
+#panel {
     height: 100%;
     width: null;
     background-color: white;
@@ -85,57 +90,56 @@ h6{
     z-index: 1;
     overflow-x: hidden;
     transition: all .2s ease-out;
-  } 
+}
 
-  .open {
+.open {
     width: 300px;
-  }
+}
 
-  /* --------- Styling for place details ------------------ */
-  .hero {
+
+/* --------- Styling for place details ------------------ */
+
+.hero {
     width: 100%;
     height: auto;
     max-height: 200px;
     display: block;
-  }
+}
 
-  .place {
+.place {
     font-family: 'open sans', arial, sans-serif;
-    
-  }
+}
 
-  .details {
+.details {
     color: darkslategrey;
-  }
+}
 
-  a {
+a {
     text-decoration: none;
     color: cadetblue;
-  }
+}
 
-  .map-text {
+.map-text {
     color: black;
     background-color: bisque;
     font-size: 50px;
-    
-  }
+}
 
-  #search {
+#search {
     padding-bottom: 1px;
     margin-bottom: 5px;
-  }
+}
 
-  #zipCode{
-    margin-left: 450px; 
-  } 
-
-
-
+#zipCode {
+    margin-left: 450px;
+}
 
 
 /* -------------- Addtional Responsiveness outside of Bootstrap ----- */
+
 @media screen and (min-width: 1200px) {
-    .fa-check, .fa-times {
-       font-size: 60px;
+    .fa-check,
+    .fa-times {
+        font-size: 60px;
     }
 }
