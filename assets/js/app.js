@@ -152,7 +152,7 @@ $(document).ready(function () {
 
 
 
-       // Streaming Platforms Info
+       // ---------- Streaming Platforms Info ------------
 
         var streamQueryURL = "https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/lookup?term=" + movie + "&country=uk";
         var settings = {
@@ -172,12 +172,40 @@ $(document).ready(function () {
             for (var i = 0; i < response.results[0].locations.length; i++) {
                 console.log(response.results[0].locations[i].display_name);
 
+                // --- Check for Amazon Prime -----
                 if (response.results[0].locations[i].display_name === "Amazon Prime") {
                     var icon = $("<i>").attr("class", "fas fa-check fa-2x");
                     var streamButton = $("<a>").attr("href",response.results[0].locations[i].url).attr("class", "button btn btn-success btn-block my-1").attr("target","_blank").text("Watch Now")
                     $("#amazon-prime-available").empty();
                     $("#amazon-prime-available").append(icon);
                     $("#stream-platform-amazon-prime").append(streamButton);
+                }
+
+                 // --- Check for Netflix -----
+                if (response.results[0].locations[i].display_name === "Netflix") {
+                    var icon = $("<i>").attr("class", "fas fa-check fa-2x");
+                    var streamButton = $("<a>").attr("href",response.results[0].locations[i].url).attr("class", "button btn btn-success btn-block my-1").attr("target","_blank").text("Watch Now")
+                    $("#netflix-available").empty();
+                    $("#netflix-available").append(icon);
+                    $("#stream-platform-netflix").append(streamButton);
+                }
+
+                 // --- Check for Amazon Instant -----
+                if (response.results[0].locations[i].display_name === "Amazon Instant") {
+                    var icon = $("<i>").attr("class", "fas fa-check fa-2x");
+                    var streamButton = $("<a>").attr("href",response.results[0].locations[i].url).attr("class", "button btn btn-success btn-block my-1").attr("target","_blank").text("Watch Now")
+                    $("#amazon-instant-available").empty();
+                    $("#amazon-instant-available").append(icon);
+                    $("#stream-platform-amazon-instant").append(streamButton);
+                }
+
+                 // --- Check for iTunes -----
+                if (response.results[0].locations[i].display_name === "Itunes") {
+                    var icon = $("<i>").attr("class", "fas fa-check fa-2x");
+                    var streamButton = $("<a>").attr("href",response.results[0].locations[i].url).attr("class", "button btn btn-success btn-block my-1").attr("target","_blank").text("Watch Now")
+                    $("#itunes-available").empty();
+                    $("#itunes-available").append(icon);
+                    $("#stream-platform-itunes").append(streamButton);
                 }
             }
         });
