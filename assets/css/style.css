@@ -24,7 +24,7 @@ h6 {
 
 #imdb-score,
 #rt-aud-score,
-#rt-fresh-score {
+#metacritic-score {
     font-weight: bolder;
     padding-left: 2px
 }
