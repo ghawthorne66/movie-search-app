@@ -52,7 +52,7 @@
 
     // Handle a geolocation error
     function handleLocationError(browserHasGeolocation, infoWindow) {
-      // Set default location to SSan Diego, Ca
+      // Set default location to San Diego, Ca
       pos = { lat: 32.715736, lng: -117.161087 };
       map = new google.maps.Map(document.getElementById('map'), {
         center: pos,
