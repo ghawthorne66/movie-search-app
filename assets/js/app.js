@@ -175,10 +175,17 @@ $(document).ready(function () {
                 // --- Check for Amazon Prime -----
                 if (response.results[0].locations[i].display_name === "Amazon Prime") {
                     var icon = $("<i>").attr("class", "fas fa-check fa-2x");
+                    var iconX = $("<i>").attr("class", "fas fa-times fa-2x");
                     var streamButton = $("<a>").attr("href",response.results[0].locations[i].url).attr("class", "button btn btn-success btn-block my-1").attr("target","_blank").text("Watch Now")
                     $("#amazon-prime-available").empty();
                     $("#amazon-prime-available").append(icon);
-                    $("#stream-platform-amazon-prime").append(streamButton);
+                    $("#amazon-prime-button").empty();
+                    $("#amazon-prime-button").append(streamButton);
+                }else {
+                    $("#amazon-prime-button").empty();
+                    $("#amazon-prime-available").empty();
+                    $("#amazon-prime-available").append(iconX);
+
                 }
 
                  // --- Check for Netflix -----
@@ -187,7 +194,13 @@ $(document).ready(function () {
                     var streamButton = $("<a>").attr("href",response.results[0].locations[i].url).attr("class", "button btn btn-success btn-block my-1").attr("target","_blank").text("Watch Now")
                     $("#netflix-available").empty();
                     $("#netflix-available").append(icon);
-                    $("#stream-platform-netflix").append(streamButton);
+                    $("#netflix-button").empty();
+                    $("#netflix-button").append(streamButton);
+                }else {
+                    $("#netflix-button").empty();
+                    $("#netflix-available").empty();
+                    $("#netflix-available").append(iconX);
+
                 }
 
                  // --- Check for Amazon Instant -----
@@ -196,7 +209,13 @@ $(document).ready(function () {
                     var streamButton = $("<a>").attr("href",response.results[0].locations[i].url).attr("class", "button btn btn-success btn-block my-1").attr("target","_blank").text("Watch Now")
                     $("#amazon-instant-available").empty();
                     $("#amazon-instant-available").append(icon);
-                    $("#stream-platform-amazon-instant").append(streamButton);
+                    $("#amazon-instant-button").empty();
+                    $("#amazon-instant-button").append(streamButton);
+                }else {
+                    $("#amazon-instant-button").empty();
+                    $("#amazon-instant-available").empty();
+                    $("#amazon-instant-available").append(iconX);
+
                 }
 
                  // --- Check for iTunes -----
@@ -205,7 +224,13 @@ $(document).ready(function () {
                     var streamButton = $("<a>").attr("href",response.results[0].locations[i].url).attr("class", "button btn btn-success btn-block my-1").attr("target","_blank").text("Watch Now")
                     $("#itunes-available").empty();
                     $("#itunes-available").append(icon);
-                    $("#stream-platform-itunes").append(streamButton);
+                    $("#itunes-button").empty();
+                    $("#itunes-button").append(streamButton);
+                }else {
+                    $("#itunes-button").empty();
+                    $("#itunes-available").empty();
+                    $("#itunes-available").append(iconX);
+
                 }
             }
         });
