@@ -46,16 +46,41 @@ h6 {
     background-color: grey;
 }
 
-html,
-body {
-    height: 100%;
-    margin: 5px;
-    padding: 5px;
+
+/* -------------- Favorite Section -------------- */
+
+#fav-buttons-below,
+#fav-info-buttons {
+    width: 100%;
+    padding: 0;
+}
+
+#favorite-card {
+    max-width: 145px;
+    float: left;
+    margin: 4px 4px;
 }
 
 
-/* Styling for an info pane that slides out from the left. 
-   * Hidden by default. */
+/* --------------- Streaming Section ------------------ */
+
+#stream-platform {
+    max-width: 200px;
+    width: 100%;
+}
+
+.fa-check {
+    color: green;
+    font-size: 5vw;
+}
+
+.fa-times {
+    color: red;
+    font-size: 5vw;
+}
+
+
+/* ----------Styling for an info pane that slides out from the left. Hidden by default. ------*/
 
 #panel {
     height: 100%;
@@ -72,7 +97,7 @@ body {
 }
 
 
-/* Styling for place details */
+/* --------- Styling for place details ------------------ */
 
 .hero {
     width: 100%;
@@ -81,8 +106,7 @@ body {
     display: block;
 }
 
-.place,
-p {
+.place {
     font-family: 'open sans', arial, sans-serif;
 }
 
@@ -108,43 +132,6 @@ a {
 
 #zipCode {
     margin-left: 450px;
-}
-
-
-/* -------------- Favorite Section -------------- */
-
-.fav-buttons-below,
-.fav-info-buttons {
-    width: 100%;
-    padding: 0;
-}
-
-.favorite-card {
-    max-width: 145px;
-    float: left;
-    margin: 4px 4px;
-}
-
-.fav-img {
-    max-height: 220px;
-}
-
-
-/* --------------- Streaming Section ------------------ */
-
-#stream-platform {
-    max-width: 200px;
-    width: 100%;
-}
-
-.fa-check {
-    color: green;
-    font-size: 5vw;
-}
-
-.fa-times {
-    color: red;
-    font-size: 5vw;
 }
 
 
