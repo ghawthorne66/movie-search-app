@@ -20,14 +20,7 @@
 
       infoPane = document.getElementById('panel');
 
-      // function initMap() {
-      //   var map = new google.maps.Map(document.getElementById('map'), {
-      //     center: {lat: -34.397, lng: 150.644},
-      //     zoom: 5
-      //   });
-      //}
-
-      // Try HTML5 geolocation
+      // HTML5 geolocation 
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position => {
           pos = {
@@ -93,20 +86,6 @@
       service.textSearch(request, nearbyCallback);
 
 
-
-      // let request = {
-      //   location: position,
-      //   rankBy: google.maps.places.RankBy.DISTANCE,
-      //   //query: '90260',
-      //   keyword: 'Movie theater',
-      //   //type: ['movie_theater']
-      //   //radius: 1000
-      // };
-
-      // service = new google.maps.places.PlacesService(map);
-      // service.nearbySearch(request, nearbyCallback);
-    }
-
     // Handle the results (up to 20) of the Nearby Search
     function nearbyCallback(results, status) {
       if (status == google.maps.places.PlacesServiceStatus.OK) {
@@ -138,7 +117,6 @@
             fields: ['name', 'formatted_address', 'geometry', 'rating',
               'website', 'photos']
           };
-
 
           service.getDetails(request, (placeResult, status) => {
             showDetails(placeResult, marker, status)
@@ -219,7 +197,6 @@
     
       // Open the infoPane
       infoPane.classList.add("open");
-
       
     }
 
@@ -309,3 +286,4 @@ $(document).ready(function () {
     getNearbyPlaces({ lat: 32.715736, lng: -117.161087 }, zipCode);
   })
 })
+    }

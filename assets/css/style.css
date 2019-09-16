@@ -14,7 +14,7 @@ h6{
 }
 
 #rt-audience-img{
-    max-width: 28px ;
+    max-width: 22px ;
 }
 
 #rt-fresh-img{
@@ -22,14 +22,13 @@ h6{
 }
 
 #imdb-score, #rt-aud-score, #rt-fresh-score{
-    float:right;
     font-weight: bolder;
+    padding-left:2px
 
 }
 
 /* ----------- Favorite Heart -----------*/
 .fa-heart{
-    float:right;
     cursor: pointer;
 }
 
@@ -37,12 +36,11 @@ h6{
     color:palevioletred;
 }
 
-
-#map {
+ #map {
     height: 100%;
     padding: 5%;
     background-color: grey;
-  }
+  } 
 
   html,
   body {
@@ -62,7 +60,7 @@ h6{
     z-index: 1;
     overflow-x: hidden;
     transition: all .2s ease-out;
-  }
+  } 
 
   .open {
     width: 300px;
@@ -91,10 +89,6 @@ h6{
     color: cadetblue;
   }
 
-
-  /* .text-center {
-    font-size: 15px;
-  } */
   .map-text {
     color: black;
     background-color: bisque;
@@ -102,6 +96,52 @@ h6{
     
   }
 
-  #zipCode{
-    margin-left: 450px;
+  #search {
+
+    padding-bottom: 1px;
+    margin-bottom: 5px;
   }
+
+  #zipCode{
+    margin-left: 450px; */
+  } */
+=======
+/* -------------- Favorite Section -------------- */ 
+#fav-buttons-below, #fav-info-buttons{
+    width:100%;
+    padding:0;
+}
+
+
+#favorite-card{
+    max-width: 145px;
+    float:left;
+    margin: 4px 4px;
+}
+
+/* --------------- Streaming Section ------------------ */
+
+#stream-platform{
+    max-width:200px;
+    width:100%;
+    
+}
+
+.fa-check{
+    color:green;
+    font-size: 5vw;
+}
+
+.fa-times{
+    color:red;
+    font-size: 5vw;
+}
+
+
+
+/* -------------- Addtional Responsiveness outside of Bootstrap ----- */
+@media screen and (min-width: 1200px) {
+    .fa-check, .fa-times {
+       font-size: 60px;
+    }
+}
