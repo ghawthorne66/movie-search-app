@@ -119,6 +119,17 @@ $(document).ready(function() {
 
             var actors = response.Actors;
             $("#movie-actors").text(actors);
+        
+            var ratedIMDB = response.Ratings[2].Value;
+            $("#rt-fresh-score").text(ratedIMDB);
+
+            var ratedRt = response.Ratings[0].Value;
+            $("#imdb-score").text(ratedRt);
+
+            var ratedMc = response.Ratings[1].Value;
+            $("#rt-audience-img").text(ratedMc);
+
+        
         })
 
         // Youtube Trailer query
