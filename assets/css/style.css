@@ -64,7 +64,7 @@ h6 {
 
 /* --------------- Streaming Section ------------------ */
 
-#stream-platform {
+#stream-platform-netflix, #stream-platform-amazon-prime, #stream-platform-amazon-instant, #stream-platform-itunes {
     max-width: 200px;
     width: 100%;
 }
