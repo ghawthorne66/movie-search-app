@@ -42,12 +42,7 @@ h6{
     background-color: grey;
   } 
 
-  html,
-  body {
-    height: 100%;
-    margin: 5px;
-    padding: 5px;
-  }
+
 
   
   /* Styling for an info pane that slides out from the left. 
@@ -103,9 +98,10 @@ h6{
   }
 
   #zipCode{
-    margin-left: 450px; */
-  } */
-=======
+    margin-left: 450px; 
+  } 
+
+
 /* -------------- Favorite Section -------------- */ 
 #fav-buttons-below, #fav-info-buttons{
     width:100%;
