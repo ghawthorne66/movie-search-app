@@ -121,6 +121,12 @@ h6 {
     border: 1px solid #4d587a;
 }
 
+#streaming-info,
+#movie-info,
+#trailer {
+    display: none;
+}
+
 
 /* --------------- Streaming Section ------------------ */
 
@@ -147,15 +153,14 @@ h6 {
 
 #panel {
     /* height: 40%; */
-     /* width: 20px; */
+    /* width: 20px; */
     background-color: white;
-    position: absolute; 
+    position: absolute;
     float: left;
     z-index: 1;
-    overflow-x: hidden; 
-    transition: all .2s ease-out; 
+    overflow-x: hidden;
+    transition: all .2s ease-out;
 }
-
 
 .open {
     width: 300px;
@@ -208,6 +213,7 @@ a {
         font-size: 60px;
     }
 }
+
 #map-container-google-2 {
     overflow: auto;
 }
