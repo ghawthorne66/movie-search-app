@@ -11,6 +11,27 @@ let year;
 
 $(document).ready(function() {
 
+    // Sticky Search Bar
+
+    function sticktothetop() {
+        var window_top = $(window).scrollTop();
+        var top = $('#stick-here').offset().top;
+        if (window_top > top && window.innerWidth >= 993) {
+            $('#stickThis').addClass('stick');
+            $('#stick-here').height($('#stickThis').outerHeight());
+        } else {
+            $('#stickThis').removeClass('stick');
+            $('#stick-here').height(0);
+        }
+
+    }
+    $(function() {
+        $(window).scroll(sticktothetop);
+        sticktothetop();
+    });
+
+
+
     // Gets movies from local storage; if empty, sets movies to an empty array
     var movies = JSON.parse(localStorage.getItem("movies") || "[]");
 
@@ -255,6 +276,28 @@ $(document).ready(function() {
                 }
             }
         });
+    }
+    // Adds a movie card to the list-favorites div
+    function addFavoriteCard(title, poster) {
+        var favoriteCard = $("<div>")
+            .addClass("card favorite-card")
+            .attr("data-movie", title); // Sets data to access later
+        var cardBody = $("<div>").addClass("card-body fav-buttons-below");
+        var buttonsDiv = $("<div>").addClass("btn-group fav-info-buttons");
+        buttonsDiv.append(($("<button>")
+            .attr("type", "button")
+            .addClass("btn btn-secondary btn-sm btn-success info-btn")
+            .text("Info")));
+        buttonsDiv.append(($("<button>")
+            .attr("type", "button")
+            .addClass("btn btn-secondary btn-sm btn-danger remove-btn")
+            .text("Remove")));
+        cardBody.append(buttonsDiv);
+        favoriteCard.append(($("<img>")
+            .attr("src", poster)
+            .addClass("card-img-top fav-img")));
+        favoriteCard.append(cardBody);
+        $("#list-favorites").append(favoriteCard);
     }
 })
 

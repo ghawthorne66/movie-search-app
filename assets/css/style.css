@@ -26,10 +26,6 @@ h6 {
     border-right: 4px solid #ef4273;
 }
 
-.left-contents {
-    /*--- Fill for Responsive ---*/
-}
-
 #submit {
     background: #ef4273;
     border: 1px solid #f5608a;
@@ -38,6 +34,19 @@ h6 {
 #submit:hover {
     background: #f69075;
     border: 1px solid #f78667;
+}
+
+
+/*--------- Sticky Sidebar -----------*/
+
+#stickThis.stick {
+    margin-top: 0;
+    position: fixed;
+    width: 39%;
+    top: 0;
+    z-index: 9999;
+    -webkit-border-radius: 0 0 10px 10px;
+    border-radius: 0 0 10px 10px;
 }
 
 
@@ -127,6 +136,12 @@ h6 {
     display: none;
 }
 
+.scroll {
+    max-height: 450px;
+    height: 100%;
+    overflow-y: auto;
+}
+
 
 /* --------------- Streaming Section ------------------ */
 
@@ -204,6 +219,10 @@ a {
     margin-left: auto;
 }
 
+#map-container-google-2 {
+    overflow: auto;
+}
+
 
 /* -------------- Addtional Responsiveness outside of Bootstrap ----- */
 
@@ -214,6 +233,9 @@ a {
     }
 }
 
-#map-container-google-2 {
-    overflow: auto;
+@media screen and (max-width: 992px) {
+    #left {
+        border-bottom: 4px solid #ef4273;
+        border-right: none;
+    }
 }

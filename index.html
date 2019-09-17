@@ -28,7 +28,7 @@
 
 
                     <div class="row text-center">
-                        <div class="col-12 my-4"><img class="img-fluid " src="assets/images/Movie-Logo.png" alt="Movie Logo" id="logo"></div>
+                        <div class="col-12 mt-5 mb-4"><img class="img-fluid " src="assets/images/Movie-Logo.png" alt="Movie Logo" id="logo"></div>
                         <div class="col-4 my-4"><img class="img-fluid" src="assets/images/search.png" alt="Search Icon" id="search-icon">
                             <p>Search for <br> Movie Information</p>
                         </div>
@@ -41,35 +41,41 @@
 
                     </div>
 
+                    <div id="stick-here"></div>
+                    <div id="stickThis">
+
+                        <!------------ MOVIE SEARCH FORM --------------------->
+                        <form class="mx-5 sidebar-item">
+                            <div class="form-row mt-5 ">
+                                <label for="movie-input"></label>
+                                <input type="" class="form-control shadow" id="movie-input" placeholder="Enter Movie Title">
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block mt-3 mb-5" id="submit">Search
+                                Movie</button>
+                        </form>
 
 
-                    <!------------ MOVIE SEARCH FORM --------------------->
-                    <form class="mx-5">
-                        <div class="form-row mt-5 ">
-                            <label for="movie-input"></label>
-                            <input type="" class="form-control shadow" id="movie-input" placeholder="Enter Movie Title">
+                        <!------------ END MOVIE SEARCH FORM --------------------->
+
+
+                        <br>
+
+                        <!-------------- FAVORITE SECTION ------------------------->
+                        <div class="card my-4" id="favorite-section">
+                            <h5 class="card-header">Saved Favorites</h5>
+                            <div class="card-body scroll" id="list-favorites">
+
+                                <!-------- INSERT FAVORITE CARDS HERE ------------>
+
+                                <!-------- END FAVORITE CARDS ---------->
+
+                            </div>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block mt-3 mb-5" id="submit">Search Movie</button>
-                    </form>
+
+                        <!-------------- END FAVORITES ------------------------->
 
 
-                    <!------------ END MOVIE SEARCH FORM --------------------->
-
-
-
-
-
-                    <br>
-
-                    <!-------------- FAVORITE SECTION ------------------------->
-                    <div class="card my-4" id="favorite-section">
-                        <h5 class="card-header">Saved Favorites</h5>
-                        <div class="card-body" id="list-favorites">
-
-                        </div>
                     </div>
-
-                    <!-------------- END FAVORITES ------------------------->
                 </div>
             </div>
 
@@ -155,15 +161,53 @@
 
                             </div>
 
-
-
                         </div>
 
+                        <!-------------- STREAMING INFO ------------------------->
+                        <div class="card border-0 mr-2">
+                            <h5 class="card-header bg-white border-bottom" id="movie-title">Can You Stream It?</h5>
+                            <div class="card-body px-5">
+
+                                <div class="container-fluid">
+                                    <div class="row justify-content-md-center ml-0">
+
+                                        <div class="col-sm-6 col-md-3 col-xs-6 p-2 mx-auto " id="stream-platform-netflix">
+                                            <img class="img-fluid mt-1" src="assets/images/netflix.png">
+                                            <div class="text-center mt-n2" id="netflix-available"><i class="fas fa-times fa-2x"></i>
+                                            </div>
+                                            <div id="netflix-button"></div>
+
+                                        </div>
+
+                                        <div class="col-sm-6 col-md-3 col-xs-6 p-2 mx-auto " id="stream-platform-amazon-prime">
+                                            <img class="img-fluid mt-1" src="assets/images/amazon-prime.png">
+                                            <div class="text-center mt-n2" id="amazon-prime-available"><i class="fas fa-times fa-2x"></i>
+                                            </div>
+                                            <div id="amazon-prime-button"></div>
+                                        </div>
+
+                                        <div class="col-sm-6 col-md-3 col-xs-6 p-2 mx-auto " id="stream-platform-amazon-instant">
+                                            <img class="img-fluid mt-1" src="assets/images/amazon-instant.png">
+                                            <div class="text-center mt-n2" id="amazon-instant-available"><i class="fas fa-times fa-2x"></i>
+                                            </div>
+                                            <div id="amazon-instant-button"></div>
+                                        </div>
+
+                                        <div class="col-sm-6 col-md-3  col-xs-6 p-2 mx-auto " id="stream-platform-itunes">
+                                            <img class="img-fluid mt-1" src="assets/images/itunes.png">
+                                            <div class="text-center mt-n2" id="itunes-available"><i class="fas fa-times fa-2x"></i>
+                                            </div>
+                                            <div id="itunes-button"></div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                         <!--------------------- TRAILER SECTION --------------------->
                         <div class="embed-responsive embed-responsive-16by9  mt-2 rounded" id="trailer">
                         </div>
-
-
                     </div>
                 </div>
 
@@ -171,53 +215,6 @@
 
 
                 <br>
-
-                <!-------------- STREAMING INFO ------------------------->
-                <div class="card mb-4 mt-n3" id="streaming-info">
-                    <h5 class="card-header" id="movie-title">Can You Stream It?</h5>
-                    <div class="card-body px-5">
-
-                        <div class="container-fluid">
-                            <div class="row justify-content-md-center ml-0">
-
-                                <div class="col-sm-6 col-md-3 col-xs-6 p-2 mx-auto border-right border-left" id="stream-platform-netflix">
-                                    <img class="img-fluid mt-1" src="assets/images/netflix.png">
-                                    <div class="text-center mt-n2" id="netflix-available"><i class="fas fa-times fa-2x"></i>
-                                    </div>
-                                    <div id="netflix-button"></div>
-
-                                </div>
-
-                                <div class="col-sm-6 col-md-3 col-xs-6 p-2 mx-auto border-right border-left" id="stream-platform-amazon-prime">
-                                    <img class="img-fluid mt-1" src="assets/images/amazon-prime.png">
-                                    <div class="text-center mt-n2" id="amazon-prime-available"><i class="fas fa-times fa-2x"></i>
-                                    </div>
-                                    <div id="amazon-prime-button"></div>
-                                </div>
-
-                                <div class="col-sm-6 col-md-3 col-xs-6 p-2 mx-auto border-right border-left" id="stream-platform-amazon-instant">
-                                    <img class="img-fluid mt-1" src="assets/images/amazon-instant.png">
-                                    <div class="text-center mt-n2" id="amazon-instant-available"><i class="fas fa-times fa-2x"></i>
-                                    </div>
-                                    <div id="amazon-instant-button"></div>
-                                </div>
-
-                                <div class="col-sm-6 col-md-3  col-xs-6 p-2 mx-auto border-right border-left" id="stream-platform-itunes">
-                                    <img class="img-fluid mt-1" src="assets/images/itunes.png">
-                                    <div class="text-center mt-n2" id="itunes-available"><i class="fas fa-times fa-2x"></i>
-                                    </div>
-                                    <div id="itunes-button"></div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-
-                <!-------------- END STREAMING INFO ------------------------->
-
 
 
 
@@ -258,20 +255,20 @@
 
                 <!-------------- END THEATER INFO ------------------------->
             </div>
+
         </div>
 
-    </div>
 
 
 
+        <!-- Jquery & Javascript-->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
-    <!-- Jquery & Javascript-->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
-    <!--Google Maps API ID-->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZO_pTbNs6Aq-YWHEM7Z_42_eqTDuOwd4&libraries=places&callback=initMap">
-    </script>
-    <script src="assets/js/app.js"></script>
+        <!--Google Maps API ID-->
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZO_pTbNs6Aq-YWHEM7Z_42_eqTDuOwd4&libraries=places&callback=initMap">
+        </script>
+        <script src="assets/js/app.js"></script>
 
 
 
