@@ -35,12 +35,12 @@ $(document).ready(function() {
     $("#search").on("click", function(event) {
         // Clear map 
         deleteMarkers();
-        console.log("Searching...");
-        console.log($("#zipCode"));
+        //console.log("Searching...");
+        //console.log($("#zipCode"));
         var zipCode = $("#zipCode").val();
 
-        console.log("-----------> Calling on getNearbyPlaces");
-        console.log("-----------> Calling on zipCode: " + zipCode);
+        //console.log("-----------> Calling on getNearbyPlaces");
+        //console.log("-----------> Calling on zipCode: " + zipCode);
         getNearbyPlaces({ lat: 32.715736, lng: -117.161087 }, zipCode);
     })
 
@@ -80,7 +80,7 @@ $(document).ready(function() {
 
         // Removes movie from movies array
         var movieIndex = movies.findIndex(isMovieMatch);
-        console.log(movieIndex);
+        //console.log(movieIndex);
         if (movieIndex > -1) {
             movies.splice(movieIndex, 1);
         }
@@ -259,10 +259,12 @@ function initMap() {
             pos = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
+                //lat: 35.393528,
+                //lng: -119.043732
             };
             map = new google.maps.Map(document.getElementById('map'), {
                 center: pos,
-                zoom: 12
+                zoom: 16
             });
             bounds.extend(pos);
 
@@ -272,7 +274,7 @@ function initMap() {
             map.setCenter(pos);
 
             // Call Places Nearby Search on user's location
-            getNearbyPlaces(pos, "91910");
+            getNearbyPlaces(pos, "");
         }, () => {
             // Browser supports geolocation, but user has denied permission
             handleLocationError(true, infoWindow);
@@ -285,11 +287,11 @@ function initMap() {
 
 // Handle a geolocation error
 function handleLocationError(browserHasGeolocation, infoWindow) {
-    // Set default location to SSan Diego, Ca
+    // Set default location to San Diego, Ca
     pos = { lat: 32.715736, lng: -117.161087 };
     map = new google.maps.Map(document.getElementById('map'), {
         center: pos,
-        zoom: 50,
+        zoom: 15
     });
 
     // Display an InfoWindow at the map center
@@ -301,12 +303,12 @@ function handleLocationError(browserHasGeolocation, infoWindow) {
     currentInfoWindow = infoWindow;
 
     // Call Places Nearby Search on the default location
-    getNearbyPlaces(pos, "91910");
+    getNearbyPlaces(pos, "92101");
 }
 
 // Perform a Places Nearby Search Request
 function getNearbyPlaces(position, query) {
-    console.log("----------------> query: " + query);
+    //console.log("----------------> query: " + query);
 
     var request = {
         location: position,
@@ -333,8 +335,7 @@ function createMarkers(places) {
         console.log(" ")
         console.log(" ")
         console.log(" ")
-        console.log("Result: " + JSON.stringify(place));
-        console.log("Location: " + place.geometry.location);
+        
         map.setCenter(place.geometry.location);
         let marker = new google.maps.Marker({
             position: place.geometry.location,
@@ -347,12 +348,13 @@ function createMarkers(places) {
         google.maps.event.addListener(marker, 'click', () => {
             let request = {
                 placeId: place.place_id,
-                fields: ['name', 'formatted_address', 'geometry', 'rating',
-                    'website', 'photos'
-                ]
+                fields: ['name', 'formatted_address', 'geometry', 'rating', 'website', 'photos']
+                
             };
 
             service.getDetails(request, (placeResult, status) => {
+                console.log("status in createMarkers: " + status);
+                console.log("placeResult in createMarkers: " + placeResult);
                 showDetails(placeResult, marker, status)
             });
         });

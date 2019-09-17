@@ -75,7 +75,9 @@ h6 {
 
 #map {
     height: 100%;
+    float: left;
     padding: 5%;
+    width: 100%;
     background-color: grey;
 }
 
@@ -144,14 +146,16 @@ h6 {
 /* ----------Styling for an info pane that slides out from the left. Hidden by default. ------*/
 
 #panel {
-    height: 100%;
-    width: null;
+    /* height: 40%; */
+     /* width: 20px; */
     background-color: white;
-    position: fixed;
+    position: absolute; 
+    float: left;
     z-index: 1;
-    overflow-x: hidden;
-    transition: all .2s ease-out;
+    overflow-x: hidden; 
+    transition: all .2s ease-out; 
 }
+
 
 .open {
     width: 300px;
@@ -191,10 +195,9 @@ a {
     margin-bottom: 5px;
 }
 
-
-/* #zipCode {
-    margin-left: 450px;
-} */
+#zipCode {
+    margin-left: auto;
+}
 
 
 /* -------------- Addtional Responsiveness outside of Bootstrap ----- */
@@ -204,4 +207,7 @@ a {
     .fa-times {
         font-size: 60px;
     }
+}
+#map-container-google-2 {
+    overflow: auto;
 }
