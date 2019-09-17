@@ -15,7 +15,7 @@ $(document).ready(function() {
     function sticktothetop() {
         var window_top = $(window).scrollTop();
         var top = $('#stick-here').offset().top;
-        if (window_top > top && window.innerWidth > 993) {
+        if (window_top > top && window.innerWidth >= 993) {
             $('#stickThis').addClass('stick');
             $('#stick-here').height($('#stickThis').outerHeight());
         } else {

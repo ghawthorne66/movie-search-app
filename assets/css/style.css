@@ -26,9 +26,6 @@ h6 {
     border-right: 4px solid #ef4273;
 }
 
-.left-contents {
-    /*--- Fill for Responsive ---*/
-}
 
 #submit {
     background: #ef4273;
@@ -45,7 +42,7 @@ h6 {
 #stickThis.stick{
     margin-top: 0;
     position: fixed;
-    width:40%;
+    width:39%;
     top: 0;
     z-index: 9999;
     -webkit-border-radius: 0 0 10px 10px;
@@ -128,6 +125,12 @@ h6 {
 .remove-btn:hover {
     background: #333f68;
     border: 1px solid #4d587a;
+}
+
+.scroll{
+    max-height: 450px;
+    height: 100%;
+    overflow-y: auto;
 }
 
 
@@ -223,15 +226,6 @@ a {
         border-right:none;
     }
 
-    #stickThis.stick{
-        margin-top: 0;
-        position: none;
-        width:40%;
-        top: 0;
-        z-index: 9999;
-        -webkit-border-radius: 0 0 10px 10px;
-        border-radius: 0 0 10px 10px;
-    }
 
 
     }
