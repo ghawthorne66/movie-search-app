@@ -14,6 +14,11 @@ h6 {
     width:100%
 }
 
+#search-icon, #stream-icon, #popcorn-icon {
+    max-width:125px;
+    width:100%;
+}
+
 #left{
     border-right: 4px solid #ef4273;
 }
