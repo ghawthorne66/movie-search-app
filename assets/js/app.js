@@ -267,7 +267,7 @@ $(document).ready(function() {
                     // If the site does stream the movie, change display to reflect that
                     if (response.results[0].locations[i].display_name === streamingSites[j].displayName) {
                         var icon = $("<i>").attr("class", "fas fa-check fa-2x");
-                        var streamButton = $("<a>").attr("href", response.results[0].locations[i].url).attr("class", "button btn btn-success btn-block my-1").attr("target", "_blank").text("Watch Now")
+                        var streamButton = $("<a>").attr("href", response.results[0].locations[i].url).attr("class", "button btn btn-success btn-sm btn-block my-1").attr("target", "_blank").text("Watch")
                         $(streamingSites[j].idRoot + "available").empty();
                         $(streamingSites[j].idRoot + "available").append(icon);
                         $(streamingSites[j].idRoot + "button").empty();

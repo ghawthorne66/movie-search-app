@@ -7,7 +7,9 @@ h6 {
     padding-right: 8px;
 }
 
-
+footer{
+    border-top: 2px solid #ef4273
+}
 /* ------------- Left Content Area ------------ */
 
 #logo {
@@ -137,7 +139,7 @@ h6 {
 }
 
 .scroll {
-    max-height: 450px;
+    max-height: 50vh;
     height: 100%;
     overflow-y: auto;
 }
@@ -233,7 +235,7 @@ a {
     }
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 991px) {
     #left {
         border-bottom: 4px solid #ef4273;
         border-right: none;
