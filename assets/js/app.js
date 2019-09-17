@@ -46,12 +46,22 @@ $(document).ready(function() {
 
     // Adds movie to favorites when heart is clicked
     $("#fav-heart").on("click", function() {
-        // Add movie to favorites in local storage
-        movies.push({ poster: $("#movie-poster").attr("src"), title: $("#movie-title").text() });
-        localStorage.setItem("movies", JSON.stringify(movies));
+        var movieTitle = $("#movie-title").text();
+        var moviePoster = $("#movie-poster").attr("src");
+        // Returns first object in movie array that has a matching movie title to the current movie being removed
+        function isMovieMatch(movie) {
+            return movie.title === movieTitle && movie.poster === moviePoster;
+        }
 
-        // Add movie to favorites on page
-        addFavoriteCard($("#movie-title").text(), $("#movie-poster").attr("src"));
+        // Only adds movies to favorites if it isn't already in favorites
+        if (movies.findIndex(isMovieMatch) == -1) {
+            // Add movie to favorites in local storage
+            movies.push({ poster: moviePoster, title: movieTitle });
+            localStorage.setItem("movies", JSON.stringify(movies));
+
+            // Add movie to favorites on page
+            addFavoriteCard($("#movie-title").text(), $("#movie-poster").attr("src"));
+        }
     })
 
     // When info is clicked, the movie's information will be displayed
