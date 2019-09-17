@@ -8,7 +8,7 @@ let service;
 let infoPane;
 let markers = [];
 
-$(document).ready(function () {
+$(document).ready(function() {
 
     // Gets movies from local storage; if empty, sets movies to an empty array
     var movies = JSON.parse(localStorage.getItem("movies") || "[]");
@@ -20,7 +20,7 @@ $(document).ready(function () {
         }
     }
 
-    $("#submit").on("click", function (event) {
+    $("#submit").on("click", function(event) {
         event.preventDefault();
 
         // Gets movie entered by user
@@ -32,7 +32,7 @@ $(document).ready(function () {
         getMovieInfo(movie);
     })
 
-    $("#search").on("click", function (event) {
+    $("#search").on("click", function(event) {
         // Clear map 
         deleteMarkers();
         //console.log("Searching...");
@@ -45,22 +45,32 @@ $(document).ready(function () {
     })
 
     // Adds movie to favorites when heart is clicked
-    $("#fav-heart").on("click", function () {
-        // Add movie to favorites in local storage
-        movies.push({ poster: $("#movie-poster").attr("src"), title: $("#movie-title").text() });
-        localStorage.setItem("movies", JSON.stringify(movies));
+    $("#fav-heart").on("click", function() {
+        var movieTitle = $("#movie-title").text();
+        var moviePoster = $("#movie-poster").attr("src");
+        // Returns first object in movie array that has a matching movie title to the current movie being removed
+        function isMovieMatch(movie) {
+            return movie.title === movieTitle && movie.poster === moviePoster;
+        }
 
-        // Add movie to favorites on page
-        addFavoriteCard($("#movie-title").text(), $("#movie-poster").attr("src"));
+        // Only adds movies to favorites if it isn't already in favorites
+        if (movies.findIndex(isMovieMatch) == -1) {
+            // Add movie to favorites in local storage
+            movies.push({ poster: moviePoster, title: movieTitle });
+            localStorage.setItem("movies", JSON.stringify(movies));
+
+            // Add movie to favorites on page
+            addFavoriteCard($("#movie-title").text(), $("#movie-poster").attr("src"));
+        }
     })
 
     // When info is clicked, the movie's information will be displayed
-    $("#list-favorites").on("click", ".info-btn", function () {
+    $("#list-favorites").on("click", ".info-btn", function() {
         getMovieInfo($(this).parent().parent().parent().attr("data-movie"));
     })
 
     // Removes movie from favorites
-    $("#list-favorites").on("click", ".remove-btn", function () {
+    $("#list-favorites").on("click", ".remove-btn", function() {
         var movieTitle = $(this).parent().parent().parent().attr("data-movie");
 
         // Returns first object in movie array that has a matching movie title to the current movie being removed
@@ -89,7 +99,7 @@ $(document).ready(function () {
         $.ajax({
             url: omdbQueryURL,
             method: "GET"
-        }).then(function (response) {
+        }).then(function(response) {
             console.log(response);
 
             //Title, Director, Genre, Plot, Poster, Rated, Released, Year, Runtime
@@ -138,7 +148,7 @@ $(document).ready(function () {
         $.ajax({
             url: youtubeQueryURL,
             method: "GET"
-        }).then(function (response) {
+        }).then(function(response) {
             console.log(response);
 
             // Clears out current placeholder trailer
@@ -152,7 +162,7 @@ $(document).ready(function () {
 
 
 
-       // ---------- Streaming Platforms Info ------------
+        // ---------- Streaming Platforms Info ------------
 
         var streamQueryURL = "https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/lookup?term=" + movie + "&country=uk";
         var settings = {
@@ -166,46 +176,40 @@ $(document).ready(function () {
             }
         }
 
-        $.ajax(settings).done(function (response) {
+        $.ajax(settings).done(function(response) {
             console.log(response);
 
+            // Creates array of streaming sites and their corresponding ID roots
+            var streamingSites = [
+                { displayName: "Amazon Prime", idRoot: "#amazon-prime-" },
+                { displayName: "Netflix", idRoot: "#netflix-" },
+                { displayName: "Amazon Instant", idRoot: "#amazon-instant-" },
+                { displayName: "Itunes", idRoot: "#itunes-" }
+            ]
+
+            // Defaults all streaming sites to not streaming
+            for (var i = 0; i < streamingSites.length; i++) {
+                var iconX = $("<i>").attr("class", "fas fa-times fa-2x");
+                $(streamingSites[i].idRoot + "button").empty();
+                $(streamingSites[i].idRoot + "available").empty();
+                $(streamingSites[i].idRoot + "available").append(iconX);
+            }
+
+            // Iterates through locations that the movie is streaming at
             for (var i = 0; i < response.results[0].locations.length; i++) {
                 console.log(response.results[0].locations[i].display_name);
 
-                // --- Check for Amazon Prime -----
-                if (response.results[0].locations[i].display_name === "Amazon Prime") {
-                    var icon = $("<i>").attr("class", "fas fa-check fa-2x");
-                    var streamButton = $("<a>").attr("href",response.results[0].locations[i].url).attr("class", "button btn btn-success btn-block my-1").attr("target","_blank").text("Watch Now")
-                    $("#amazon-prime-available").empty();
-                    $("#amazon-prime-available").append(icon);
-                    $("#stream-platform-amazon-prime").append(streamButton);
-                }
-
-                 // --- Check for Netflix -----
-                if (response.results[0].locations[i].display_name === "Netflix") {
-                    var icon = $("<i>").attr("class", "fas fa-check fa-2x");
-                    var streamButton = $("<a>").attr("href",response.results[0].locations[i].url).attr("class", "button btn btn-success btn-block my-1").attr("target","_blank").text("Watch Now")
-                    $("#netflix-available").empty();
-                    $("#netflix-available").append(icon);
-                    $("#stream-platform-netflix").append(streamButton);
-                }
-
-                 // --- Check for Amazon Instant -----
-                if (response.results[0].locations[i].display_name === "Amazon Instant") {
-                    var icon = $("<i>").attr("class", "fas fa-check fa-2x");
-                    var streamButton = $("<a>").attr("href",response.results[0].locations[i].url).attr("class", "button btn btn-success btn-block my-1").attr("target","_blank").text("Watch Now")
-                    $("#amazon-instant-available").empty();
-                    $("#amazon-instant-available").append(icon);
-                    $("#stream-platform-amazon-instant").append(streamButton);
-                }
-
-                 // --- Check for iTunes -----
-                if (response.results[0].locations[i].display_name === "Itunes") {
-                    var icon = $("<i>").attr("class", "fas fa-check fa-2x");
-                    var streamButton = $("<a>").attr("href",response.results[0].locations[i].url).attr("class", "button btn btn-success btn-block my-1").attr("target","_blank").text("Watch Now")
-                    $("#itunes-available").empty();
-                    $("#itunes-available").append(icon);
-                    $("#stream-platform-itunes").append(streamButton);
+                // Iterates through list our list of possible streaming sites
+                for (var j = 0; j < streamingSites.length; j++) {
+                    // If the site does stream the movie, change display to reflect that
+                    if (response.results[0].locations[i].display_name === streamingSites[j].displayName) {
+                        var icon = $("<i>").attr("class", "fas fa-check fa-2x");
+                        var streamButton = $("<a>").attr("href", response.results[0].locations[i].url).attr("class", "button btn btn-success btn-block my-1").attr("target", "_blank").text("Watch Now")
+                        $(streamingSites[j].idRoot + "available").empty();
+                        $(streamingSites[j].idRoot + "available").append(icon);
+                        $(streamingSites[j].idRoot + "button").empty();
+                        $(streamingSites[j].idRoot + "button").append(streamButton);
+                    }
                 }
             }
         });
