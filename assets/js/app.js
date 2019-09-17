@@ -10,6 +10,27 @@ let markers = [];
 
 $(document).ready(function() {
 
+    // Sticky Search Bar
+
+    function sticktothetop() {
+        var window_top = $(window).scrollTop();
+        var top = $('#stick-here').offset().top;
+        if (window_top > top && window.innerWidth > 993) {
+            $('#stickThis').addClass('stick');
+            $('#stick-here').height($('#stickThis').outerHeight());
+        } else {
+            $('#stickThis').removeClass('stick');
+            $('#stick-here').height(0);
+        }
+
+    }
+    $(function() {
+        $(window).scroll(sticktothetop);
+        sticktothetop();
+    });
+
+
+
     // Gets movies from local storage; if empty, sets movies to an empty array
     var movies = JSON.parse(localStorage.getItem("movies") || "[]");
 
@@ -242,6 +263,9 @@ $(document).ready(function() {
         $("#list-favorites").append(favoriteCard);
     }
 })
+
+
+
 
 /* GOOGLE MAPS FUNCTIONS */
 

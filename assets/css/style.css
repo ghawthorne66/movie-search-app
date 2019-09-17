@@ -41,6 +41,17 @@ h6 {
 }
 
 
+/*--------- Sticky Sidebar -----------*/
+#stickThis.stick{
+    margin-top: 0;
+    position: fixed;
+    width:40%;
+    top: 0;
+    z-index: 9999;
+    -webkit-border-radius: 0 0 10px 10px;
+    border-radius: 0 0 10px 10px;
+}
+
 /* ------------ Review/Ratings ------------------*/
 
 #imdb-img {
@@ -205,3 +216,22 @@ a {
         font-size: 60px;
     }
 }
+
+@media screen and (max-width: 992px) {
+    #left {
+        border-bottom: 4px solid #ef4273;
+        border-right:none;
+    }
+
+    #stickThis.stick{
+        margin-top: 0;
+        position: none;
+        width:40%;
+        top: 0;
+        z-index: 9999;
+        -webkit-border-radius: 0 0 10px 10px;
+        border-radius: 0 0 10px 10px;
+    }
+
+
+    }
