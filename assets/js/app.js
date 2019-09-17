@@ -331,10 +331,10 @@ function nearbyCallback(results, status) {
 // Set markers at the location of each place result
 function createMarkers(places) {
     places.forEach(place => {
-        console.log("----------------------------------")
-        console.log(" ")
-        console.log(" ")
-        console.log(" ")
+        // console.log("----------------------------------")
+        // console.log(" ")
+        // console.log(" ")
+        // console.log(" ")
         
         map.setCenter(place.geometry.location);
         let marker = new google.maps.Marker({
