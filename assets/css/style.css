@@ -1,5 +1,5 @@
 body {
-    background: lightslategray;
+    background:#343a40;
 }
 
 h6 {
@@ -7,6 +7,34 @@ h6 {
     padding-right: 8px;
 }
 
+
+/* ------------- Left Content Area ------------ */
+#logo{
+    max-width:150px;
+    width:100%
+}
+
+#search-icon, #stream-icon, #popcorn-icon {
+    max-width:125px;
+    width:100%;
+}
+
+#left{
+    border-right: 4px solid #ef4273;
+}
+.left-contents{
+   /*--- Fill for Responsive ---*/
+}
+
+#submit{
+    background: #ef4273;
+    border: 1px solid #f5608a;
+}
+
+#submit:hover{
+    background: #f69075;
+    border: 1px solid #f78667;
+}
 
 /* ------------ Review/Ratings ------------------*/
 
@@ -37,7 +65,7 @@ h6 {
 }
 
 .fa-heart:hover::before {
-    color: palevioletred;
+    color: #ef4273;
 }
 
 #map {
@@ -59,6 +87,26 @@ h6 {
     max-width: 145px;
     float: left;
     margin: 4px 4px;
+}
+
+.info-btn{
+    background: #ef4273;
+    border: 1px solid #f5608a;
+}
+
+.info-btn:hover{
+    background: #ec6188;
+    border: 1px solid #e97898;
+}
+
+.remove-btn{
+    background: #202e5e;
+    border: 1px solid #34457e;
+}
+
+.remove-btn:hover{
+    background: #333f68;
+    border: 1px solid #4d587a;
 }
 
 
@@ -130,9 +178,9 @@ a {
     margin-bottom: 5px;
 }
 
-#zipCode {
+/* #zipCode {
     margin-left: 450px;
-}
+} */
 
 
 /* -------------- Addtional Responsiveness outside of Bootstrap ----- */
