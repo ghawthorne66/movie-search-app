@@ -179,71 +179,37 @@ $(document).ready(function() {
         $.ajax(settings).done(function(response) {
             console.log(response);
 
+            // Creates array of streaming sites and their corresponding ID roots
+            var streamingSites = [
+                { displayName: "Amazon Prime", idRoot: "#amazon-prime-" },
+                { displayName: "Netflix", idRoot: "#netflix-" },
+                { displayName: "Amazon Instant", idRoot: "#amazon-instant-" },
+                { displayName: "Itunes", idRoot: "#itunes-" }
+            ]
+
+            // Defaults all streaming sites to not streaming
+            for (var i = 0; i < streamingSites.length; i++) {
+                var iconX = $("<i>").attr("class", "fas fa-times fa-2x");
+                $(streamingSites[i].idRoot + "button").empty();
+                $(streamingSites[i].idRoot + "available").empty();
+                $(streamingSites[i].idRoot + "available").append(iconX);
+            }
+
+            // Iterates through locations that the movie is streaming at
             for (var i = 0; i < response.results[0].locations.length; i++) {
                 console.log(response.results[0].locations[i].display_name);
 
-                // --- Check for Amazon Prime -----
-                if (response.results[0].locations[i].display_name === "Amazon Prime") {
-                    var icon = $("<i>").attr("class", "fas fa-check fa-2x");
-                    var iconX = $("<i>").attr("class", "fas fa-times fa-2x");
-                    var streamButton = $("<a>").attr("href", response.results[0].locations[i].url).attr("class", "button btn btn-success btn-block my-1").attr("target", "_blank").text("Watch Now")
-                    $("#amazon-prime-available").empty();
-                    $("#amazon-prime-available").append(icon);
-                    $("#amazon-prime-button").empty();
-                    $("#amazon-prime-button").append(streamButton);
-                } else {
-                    $("#amazon-prime-button").empty();
-                    $("#amazon-prime-available").empty();
-                    $("#amazon-prime-available").append(iconX);
-
-                }
-
-                // --- Check for Netflix -----
-                if (response.results[0].locations[i].display_name === "Netflix") {
-                    var icon = $("<i>").attr("class", "fas fa-check fa-2x");
-                    var iconX = $("<i>").attr("class", "fas fa-times fa-2x");
-                    var streamButton = $("<a>").attr("href", response.results[0].locations[i].url).attr("class", "button btn btn-success btn-block my-1").attr("target", "_blank").text("Watch Now")
-                    $("#netflix-available").empty();
-                    $("#netflix-available").append(icon);
-                    $("#netflix-button").empty();
-                    $("#netflix-button").append(streamButton);
-                } else {
-                    $("#netflix-button").empty();
-                    $("#netflix-available").empty();
-                    $("#netflix-available").append(iconX);
-
-                }
-
-                // --- Check for Amazon Instant -----
-                if (response.results[0].locations[i].display_name === "Amazon Instant") {
-                    var icon = $("<i>").attr("class", "fas fa-check fa-2x");
-                    var iconX = $("<i>").attr("class", "fas fa-times fa-2x");
-                    var streamButton = $("<a>").attr("href", response.results[0].locations[i].url).attr("class", "button btn btn-success btn-block my-1").attr("target", "_blank").text("Watch Now")
-                    $("#amazon-instant-available").empty();
-                    $("#amazon-instant-available").append(icon);
-                    $("#amazon-instant-button").empty();
-                    $("#amazon-instant-button").append(streamButton);
-                } else {
-                    $("#amazon-instant-button").empty();
-                    $("#amazon-instant-available").empty();
-                    $("#amazon-instant-available").append(iconX);
-
-                }
-
-                // --- Check for iTunes -----
-                if (response.results[0].locations[i].display_name === "Itunes") {
-                    var icon = $("<i>").attr("class", "fas fa-check fa-2x");
-                    var iconX = $("<i>").attr("class", "fas fa-times fa-2x");
-                    var streamButton = $("<a>").attr("href", response.results[0].locations[i].url).attr("class", "button btn btn-success btn-block my-1").attr("target", "_blank").text("Watch Now")
-                    $("#itunes-available").empty();
-                    $("#itunes-available").append(icon);
-                    $("#itunes-button").empty();
-                    $("#itunes-button").append(streamButton);
-                } else {
-                    $("#itunes-button").empty();
-                    $("#itunes-available").empty();
-                    $("#itunes-available").append(iconX);
-
+                // Iterates through list our list of possible streaming sites
+                for (var j = 0; j < streamingSites.length; j++) {
+                    // If the site does stream the movie, change display to reflect that
+                    if (response.results[0].locations[i].display_name === streamingSites[j].displayName) {
+                        var icon = $("<i>").attr("class", "fas fa-check fa-2x");
+                        var streamButton = $("<a>").attr("href", response.results[0].locations[i].url).attr("class", "button btn btn-success btn-block my-1").attr("target", "_blank").text("Watch Now")
+                        $(streamingSites[j].idRoot + "available").empty();
+                        $(streamingSites[j].idRoot + "available").append(icon);
+                        $(streamingSites[j].idRoot + "button").empty();
+                        $(streamingSites[j].idRoot + "button").append(streamButton);
+                    }
                 }
             }
         });
