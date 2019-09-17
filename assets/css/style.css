@@ -9,6 +9,11 @@ h6 {
 
 
 /* ------------- Left Content Area ------------ */
+#logo{
+    max-width:150px;
+    width:100%
+}
+
 #left{
     border-right: 4px solid #ef4273;
 }
