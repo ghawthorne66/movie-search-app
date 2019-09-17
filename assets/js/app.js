@@ -191,6 +191,7 @@ $(document).ready(function () {
                  // --- Check for Netflix -----
                 if (response.results[0].locations[i].display_name === "Netflix") {
                     var icon = $("<i>").attr("class", "fas fa-check fa-2x");
+                    var iconX = $("<i>").attr("class", "fas fa-times fa-2x");
                     var streamButton = $("<a>").attr("href",response.results[0].locations[i].url).attr("class", "button btn btn-success btn-block my-1").attr("target","_blank").text("Watch Now")
                     $("#netflix-available").empty();
                     $("#netflix-available").append(icon);
@@ -206,6 +207,7 @@ $(document).ready(function () {
                  // --- Check for Amazon Instant -----
                 if (response.results[0].locations[i].display_name === "Amazon Instant") {
                     var icon = $("<i>").attr("class", "fas fa-check fa-2x");
+                    var iconX = $("<i>").attr("class", "fas fa-times fa-2x");
                     var streamButton = $("<a>").attr("href",response.results[0].locations[i].url).attr("class", "button btn btn-success btn-block my-1").attr("target","_blank").text("Watch Now")
                     $("#amazon-instant-available").empty();
                     $("#amazon-instant-available").append(icon);
@@ -221,6 +223,7 @@ $(document).ready(function () {
                  // --- Check for iTunes -----
                 if (response.results[0].locations[i].display_name === "Itunes") {
                     var icon = $("<i>").attr("class", "fas fa-check fa-2x");
+                    var iconX = $("<i>").attr("class", "fas fa-times fa-2x");
                     var streamButton = $("<a>").attr("href",response.results[0].locations[i].url).attr("class", "button btn btn-success btn-block my-1").attr("target","_blank").text("Watch Now")
                     $("#itunes-available").empty();
                     $("#itunes-available").append(icon);
