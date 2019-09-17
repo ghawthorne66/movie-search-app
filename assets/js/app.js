@@ -93,6 +93,8 @@ $(document).ready(function() {
     })
 
     function getMovieInfo(movie) {
+
+        // -------------------- OMDB API Use ---------------------
         var omdbQueryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
 
         // Creating an AJAX call for the specific movie button being clicked
@@ -142,9 +144,12 @@ $(document).ready(function() {
         })
 
 
-        // Youtube Trailer query
-        var youtubeQueryURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=" + movie + " trailer&key=AIzaSyANwe_R8GJEK-5rYI2aufq2Gh2HZjQcOJI";
-
+        // --------------------------- Youtube API Use -----------------------------------
+        // Caren's API Key
+        var youtubeQueryURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=" + movie + " trailer&key=AIzaSyANwe_R8GJEK-5rYI2aufq2Gh2HZjQcOJI";
+        // Jeff's API Key
+        // var youtubeQueryURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=" + movie + " trailer&key=AIzaSyBMkzMarib_oMDFs80Cc_s1uSr5Tg8n_Jo";
+        console.log(youtubeQueryURL);
         $.ajax({
             url: youtubeQueryURL,
             method: "GET"
@@ -214,9 +219,10 @@ $(document).ready(function() {
             }
         });
 
-
-
-
+        // Displays movie info after movie has been searched
+        $("#movie-info").css("display", "block");
+        $("#streaming-info").css("display", "block");
+        $("#trailer").css("display", "block");
     }
 
     // Adds a movie card to the list-favorites div
@@ -243,6 +249,9 @@ $(document).ready(function() {
     }
 })
 
+
+
+
 /* GOOGLE MAPS FUNCTIONS */
 
 function initMap() {
@@ -259,8 +268,8 @@ function initMap() {
             pos = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
-                //lat: 35.393528,
-                //lng: -119.043732
+                    //lat: 35.393528,
+                    //lng: -119.043732
             };
             map = new google.maps.Map(document.getElementById('map'), {
                 center: pos,
@@ -335,7 +344,7 @@ function createMarkers(places) {
         console.log(" ")
         console.log(" ")
         console.log(" ")
-        
+
         map.setCenter(place.geometry.location);
         let marker = new google.maps.Marker({
             position: place.geometry.location,
@@ -349,7 +358,7 @@ function createMarkers(places) {
             let request = {
                 placeId: place.place_id,
                 fields: ['name', 'formatted_address', 'geometry', 'rating', 'website', 'photos']
-                
+
             };
 
             service.getDetails(request, (placeResult, status) => {

@@ -66,19 +66,6 @@
                         <h5 class="card-header">Saved Favorites</h5>
                         <div class="card-body" id="list-favorites">
 
-                            <!-------- INSERT FAVORITE CARDS HERE ------------>
-                            <div class="card favorite-card" data-movie="The Lion King">
-                                <img src="https://m.media-amazon.com/images/M/MV5BYTYxNGMyZTYtMjE3MS00MzNjLWFjNmYtMDk3N2FmM2JiM2M1XkEyXkFqcGdeQXVyNjY5NDU4NzI@._V1_SX300.jpg" class="card-img-top fav-img" alt="...">
-                                <div class="card-body fav-buttons-below">
-                                    <div class="btn-group fav-info-buttons">
-                                        <button type="button" class="btn btn-secondary btn-sm btn-success info-btn">Info</button>
-                                        <button type="button" class="btn btn-secondary  btn-sm btn-danger remove-btn">Remove</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-------- END FAVORITE CARDS ---------->
-
                         </div>
                     </div>
 
@@ -91,7 +78,7 @@
             <div class="col-lg-7 bg-dark">
 
                 <!-------------- MOVIE INFO & TRAILER CARD ------------------------->
-                <div class="card mt-4">
+                <div class="card mt-4" id="movie-info">
                     <h5 class="card-header" id="movie-title">The Lion King</h5>
                     <div class="card-body mr-n3">
 
@@ -128,7 +115,7 @@
                             </div>
 
 
-                            <!-- MOVE DETAILS ---->
+                            <!-- MOVIE DETAILS ---->
                             <div class="col-lg-7 col-12 ">
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item my-n1">
@@ -174,7 +161,6 @@
 
                         <!--------------------- TRAILER SECTION --------------------->
                         <div class="embed-responsive embed-responsive-16by9  mt-2 rounded" id="trailer">
-                            <iframe id="yt-trailer" class="embed-responsive-item pr-3" src="https://www.youtube.com/embed/hY7xBISLBIA" allowfullscreen></iframe>
                         </div>
 
 
@@ -187,7 +173,7 @@
                 <br>
 
                 <!-------------- STREAMING INFO ------------------------->
-                <div class="card my-4">
+                <div class="card my-4" id="streaming-info">
                     <h5 class="card-header" id="movie-title">Can You Stream It?</h5>
                     <div class="card-body px-5">
 
@@ -209,7 +195,6 @@
                                     <div id="amazon-prime-button"></div>
                                 </div>
 
-    
                                 <div class="col-sm-6 col-md-3 col-xs-6 p-2 mx-auto border-right border-left" id="stream-platform-amazon-instant">
                                     <img class="img-fluid mt-1" src="assets/images/amazon-instant.png">
                                     <div class="text-center mt-n2" id="amazon-instant-available"><i class="fas fa-times fa-2x"></i>
@@ -226,8 +211,6 @@
                                 </div>
                             </div>
                         </div>
-
-            
                     </div>
 
                 </div>
@@ -241,7 +224,7 @@
 
 
                 <!-------------- MOVIE THEATER INFO ------------------------->
-                <div class="card my-4">
+                <div class="card mt-n3 movie-theater-info">
                     <h5 class="card-header" id="theater-search">Find a Theater Near You </h5>
 
                     <div class="card-body">
@@ -258,15 +241,16 @@
                         <!--Google map-->
                         <div id="map-container-google-2" class="z-depth-1-half map-container" style="height: 800px">
 
-                    
-                    <!-- The slide-out panel for showing place details -->
-                    <div style="width: 300px" id="panel"></div>
-                    
-                    <!-- Map appears here -->
-                    <div id="map"></div>
+                            <!-- The slide-out panel for showing place details -->
+                            <div id="panel"></div>
 
-                </div>
-                <!--End Google Maps-->
+                            <!-- Map appears here -->
+                            <div id="map"></div>
+
+
+                        </div>
+                        <!--End Google Maps-->
+
 
 
                     </div>
@@ -285,13 +269,10 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
     <!--Google Maps API ID-->
-    <script src="assets/js/app.js"></script>
-    <script src="assets/js/gracenote.js"></script>
-
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZO_pTbNs6Aq-YWHEM7Z_42_eqTDuOwd4&libraries=places&callback=initMap"></script>
-
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZO_pTbNs6Aq-YWHEM7Z_42_eqTDuOwd4&libraries=places&callback=initMap">
     </script>
-    
+    <script src="assets/js/app.js"></script>
+
 
 
 
