@@ -7,6 +7,7 @@ let currentInfoWindow;
 let service;
 let infoPane;
 let markers = [];
+let year;
 
 $(document).ready(function() {
 
@@ -100,7 +101,10 @@ $(document).ready(function() {
         // Creating an AJAX call for the specific movie button being clicked
         $.ajax({
             url: omdbQueryURL,
-            method: "GET"
+            method: "GET",
+            success: function(response) {
+                getYoutubeTrailer(movie, response.Year);
+            }
         }).then(function(response) {
             console.log(response);
 
@@ -140,15 +144,45 @@ $(document).ready(function() {
 
             var ratedMc = response.Ratings[2].Value;
             $("#metacritic-score").text(ratedMc);
-
         })
 
+        getStreamingInfo(movie);
 
+        // Displays movie info after movie has been searched
+        $("#movie-info").css("display", "block");
+        $("#streaming-info").css("display", "block");
+        $("#trailer").css("display", "block");
+    }
+
+    // Adds a movie card to the list-favorites div
+    function addFavoriteCard(title, poster) {
+        var favoriteCard = $("<div>")
+            .addClass("card favorite-card")
+            .attr("data-movie", title); // Sets data to access later
+        var cardBody = $("<div>").addClass("card-body fav-buttons-below");
+        var buttonsDiv = $("<div>").addClass("btn-group fav-info-buttons");
+        buttonsDiv.append(($("<button>")
+            .attr("type", "button")
+            .addClass("btn btn-secondary btn-sm btn-success info-btn")
+            .text("Info")));
+        buttonsDiv.append(($("<button>")
+            .attr("type", "button")
+            .addClass("btn btn-secondary btn-sm btn-danger remove-btn")
+            .text("Remove")));
+        cardBody.append(buttonsDiv);
+        favoriteCard.append(($("<img>")
+            .attr("src", poster)
+            .addClass("card-img-top fav-img")));
+        favoriteCard.append(cardBody);
+        $("#list-favorites").append(favoriteCard);
+    }
+
+    function getYoutubeTrailer(movie, year) {
         // --------------------------- Youtube API Use -----------------------------------
         // Caren's API Key
-        var youtubeQueryURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=" + movie + " trailer&key=AIzaSyANwe_R8GJEK-5rYI2aufq2Gh2HZjQcOJI";
+        var youtubeQueryURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=" + movie + " " + year + " trailer&key=AIzaSyANwe_R8GJEK-5rYI2aufq2Gh2HZjQcOJI";
         // Jeff's API Key
-        // var youtubeQueryURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=" + movie + " trailer&key=AIzaSyBMkzMarib_oMDFs80Cc_s1uSr5Tg8n_Jo";
+        // var youtubeQueryURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=" + movie + " " + year + " trailer&key=AIzaSyBMkzMarib_oMDFs80Cc_s1uSr5Tg8n_Jo";
         console.log(youtubeQueryURL);
         $.ajax({
             url: youtubeQueryURL,
@@ -164,6 +198,9 @@ $(document).ready(function() {
             trailer.attr("src", "https://www.youtube.com/embed/" + response.items[0].id.videoId);
             $("#trailer").append(trailer);
         });
+    }
+
+    function getStreamingInfo(movie) {
 
 
 
@@ -218,34 +255,6 @@ $(document).ready(function() {
                 }
             }
         });
-
-        // Displays movie info after movie has been searched
-        $("#movie-info").css("display", "block");
-        $("#streaming-info").css("display", "block");
-        $("#trailer").css("display", "block");
-    }
-
-    // Adds a movie card to the list-favorites div
-    function addFavoriteCard(title, poster) {
-        var favoriteCard = $("<div>")
-            .addClass("card favorite-card")
-            .attr("data-movie", title); // Sets data to access later
-        var cardBody = $("<div>").addClass("card-body fav-buttons-below");
-        var buttonsDiv = $("<div>").addClass("btn-group fav-info-buttons");
-        buttonsDiv.append(($("<button>")
-            .attr("type", "button")
-            .addClass("btn btn-secondary btn-sm btn-success info-btn")
-            .text("Info")));
-        buttonsDiv.append(($("<button>")
-            .attr("type", "button")
-            .addClass("btn btn-secondary btn-sm btn-danger remove-btn")
-            .text("Remove")));
-        cardBody.append(buttonsDiv);
-        favoriteCard.append(($("<img>")
-            .attr("src", poster)
-            .addClass("card-img-top fav-img")));
-        favoriteCard.append(cardBody);
-        $("#list-favorites").append(favoriteCard);
     }
 })
 
