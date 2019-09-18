@@ -380,6 +380,7 @@ function getNearbyPlaces(position, query) {
 
     service = new google.maps.places.PlacesService(map);
     service.textSearch(request, nearbyCallback);
+    
 }
 
 // Handle the results (up to 20) of the Nearby Search
@@ -392,11 +393,11 @@ function nearbyCallback(results, status) {
 // Set markers at the location of each place result
 function createMarkers(places) {
     places.forEach(place => {
-        console.log("----------------------------------")
-        console.log(" ")
-        console.log(" ")
-        console.log(" ")
-
+        // console.log("----------------------------------")
+        // console.log(" ")
+        // console.log(" ")
+        // console.log(" ")
+        
         map.setCenter(place.geometry.location);
         let marker = new google.maps.Marker({
             position: place.geometry.location,
@@ -502,3 +503,5 @@ function deleteMarkers() {
         markers[i].setMap(null);
     }
 }
+
+

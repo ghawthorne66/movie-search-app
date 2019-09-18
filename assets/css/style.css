@@ -1,11 +1,5 @@
 body {
     background: #343a40;
-    font-family: 'Noto Sans', sans-serif;
-}
-
-h1, h2, h3, h4, h5, h6{
-    font-family: 'Fjalla One', sans-serif;
-
 }
 
 h6 {
@@ -13,13 +7,7 @@ h6 {
     padding-right: 8px;
 }
 
-#right-side{
-    background: url(../images/dark-honeycomb.png) repeat !important;
-}
 
-footer{
-    border-top: 2px solid #ef4273
-}
 /* ------------- Left Content Area ------------ */
 
 #logo {
@@ -38,6 +26,10 @@ footer{
     border-right: 4px solid #ef4273;
 }
 
+/* .left-contents {
+    /*--- Fill for Responsive ---*/
+/* } */ */
+
 #submit {
     background: #ef4273;
     border: 1px solid #f5608a;
@@ -46,19 +38,6 @@ footer{
 #submit:hover {
     background: #f69075;
     border: 1px solid #f78667;
-}
-
-
-/*--------- Sticky Sidebar -----------*/
-
-#stickThis.stick {
-    margin-top: 0;
-    position: fixed;
-    width: 39%;
-    top: 0;
-    z-index: 9999;
-    -webkit-border-radius: 0 0 10px 10px;
-    border-radius: 0 0 10px 10px;
 }
 
 
@@ -86,11 +65,11 @@ footer{
 
 /* ----------- Favorite Heart -----------*/
 
-.fas.fa-heart {
+.fa-heart {
     cursor: pointer;
 }
 
-.fas.fa-heart:hover::before {
+.fa-heart:hover::before {
     color: #ef4273;
 }
 
@@ -148,12 +127,6 @@ footer{
     display: none;
 }
 
-.scroll {
-    max-height: 50vh;
-    height: 100%;
-    overflow-y: auto;
-}
-
 
 /* --------------- Streaming Section ------------------ */
 
@@ -202,9 +175,9 @@ footer{
     max-height: 200px;
     display: block;
 }
-.place {
-    font-size:1.7em
 
+.place {
+    font-family: 'open sans', arial, sans-serif;
 }
 
 .details {
@@ -225,20 +198,11 @@ a {
 #search {
     padding-bottom: 1px;
     margin-bottom: 5px;
+    background-color: #ef4273
 }
 
 #zipCode {
     margin-left: auto;
-}
-
-#map-container-google-2 {
-    overflow: auto;
-}
-
-#panel{
-    margin: 10% 0 0 1.5vw;
-    border-radius: 15px;
-    padding: 2vh;
 }
 
 
@@ -251,9 +215,46 @@ a {
     }
 }
 
-@media screen and (max-width: 991px) {
-    #left {
-        border-bottom: 4px solid #ef4273;
-        border-right: none;
-    }
+#map-container-google-2 {
+    overflow: auto;
+}
+/*--------------NEW CODE-----------------------------*/
+
+.color-blk {
+
+    color: black;
+}
+
+.card-header:first-child {
+    color: black;
+    border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+}
+
+#movie-title-display {
+    max-height: 87vh;
+    color: black;
+    /* max-height: calc(100vh - 272px); */
+    overflow: auto;
+}
+.card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+    color: black;
+}
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+user agent stylesheet
+div {
+    display: block;
+}
+
+.card {
+    color: black;
+    background-color: white;
+}
+
+.card-text.text-black {
+    color: black;
 }
