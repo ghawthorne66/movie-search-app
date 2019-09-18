@@ -65,14 +65,7 @@
                                 Movie</button>
                         </form>
 
-                    <!------------ MOVIE SEARCH FORM --------------------->
-                    <form class="mx-5">
-                        <div class="form-row mt-5 ">
-                            <label for="movie-input"></label>
-                            <input type="" class="form-control shadow" id="movie-input" placeholder="Enter Movie Title">
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-block mt-3 mb-5" id="submit">Search Movie</button>
-                    </form>
+                        <!------------ MOVIE SEARCH FORM --------------------->
 
 
                         <br>
@@ -83,9 +76,8 @@
                             <div class="card-body scroll" id="list-favorites">
 
                                 <!-------- INSERT FAVORITE CARDS HERE ------------>
-
-                    <br>
-
+                            </div>
+                        </div>
 
                     </div>
                 </div>
@@ -262,8 +254,8 @@
                         <!---------- GOOGLE MAPS CODE ------------->
 
                         <!---zip code input field-->
-                        <input class="form-control-default" type="text" 
-                            id="zipCode" placeholder="Enter Zip Code"></input>
+                        <input class="form-control-default" type="text" id="zipCode"
+                            placeholder="Enter Zip Code"></input>
                         <!---zip code submit button--->
                         <button type="submit" class="btn btn-success btn-md" id="search">
                             <span aria-hidden="true"></span>Search by Zip
@@ -287,54 +279,45 @@
                     </div>
                 </div>
 
-                <!-------------- END THEATER INFO ------------------------->
-            </div>
 
 
-            <!--Footer-->
-            <footer class="py-3 bg-dark text-white-50" style="border-width:4px !important; bottom:0; width:100%;">
-                <div class="container text-center">
-                    <small>Copyright &copy; 2019</small>
-                </div>
-            </footer>
-
-
-
-        </div>
-
-
-    <!-------------- MOVIE THEATER INFO ------------------------->             
+                <!-------------- MOVIE THEATER INFO ------------------------->
                 <!--Grid column-->
-            <div class="row m-5" id="results-row">
-                <div class="col-lg-4 col-md-6 col-sm-12 bg-white"  id="column-1"></div>
-                <div class="col-lg-4 col-md-6 col-sm-12" id="column-2"></div>
-                <div class="col-lg-4 col-md-12 col-sm-12 bg-white" id="column-3"></div>
+                <div class="row m-5" id="results-row">
+                    <div class="col-lg-4 col-md-6 col-sm-12 bg-white" id="column-1"></div>
+                    <div class="col-lg-4 col-md-6 col-sm-12" id="column-2"></div>
+                    <div class="col-lg-4 col-md-12 col-sm-12 bg-white" id="column-3"></div>
+                </div>
             </div>
         </div>
     </div>
-</div>
-            
-            </div>
 
+    <!----------------------------------------------END MOVIE THEATER INFO---------------------------------------------------->
+
+    <!--Footer-->
+    <footer class="py-3 bg-dark text-white-50" style="border-width:4px !important; bottom:0; width:100%;">
+        <div class="container text-center">
+            <small>Copyright &copy; 2019</small>
         </div>
+    </footer>
+
+
+
     </div>
-</div>
-
-<!----------------------------------------------END MOVIE THEATER INFO---------------------------------------------------->
-
-        <!-- Jquery & Javascript-->
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <!-- Jquery & Javascript-->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
 
     <!--Google Maps API ID-->
     <script src="assets/js/gracenote.js"></script>
     <script src="assets/js/app.js"></script>
 
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZO_pTbNs6Aq-YWHEM7Z_42_eqTDuOwd4&libraries=places&callback=initMap"></script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZO_pTbNs6Aq-YWHEM7Z_42_eqTDuOwd4&libraries=places&callback=initMap"></script>
 
-<!-- Link to Moment.js -->
-<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.js"></script>
+    <!-- Link to Moment.js -->
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.js"></script>
 
 
 </body>
