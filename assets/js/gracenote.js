@@ -72,11 +72,7 @@ function displayShowtimes(key) {
 
     for (var m = 0; m < showtimes.length; m++) {
         let currentTime = moment();
-        /*.format("h:mm A");*/
-        /*console.log(currentTime);*/
         let screeningAdj = moment(showtimes[m].dateTime);
-        /*.format("h:mm A");*/
-        /*console.log(screeningAdj);*/
         let diff = screeningAdj.diff(currentTime, 'minutes');
         if (diff > 0) {
             console.log(diff);

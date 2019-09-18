@@ -19,13 +19,11 @@
 <body>
 
     <div class="container-fluid">
-        <!-- Content here -->
 
         <div class="row ">
             <div class="col-lg-5  col-12 bg-white " id="left">
 
                 <div class="left-contents">
-
 
                     <div class="row text-center">
                         <div class="col-12 mt-5 mb-4"><img class="img-fluid " src="assets/images/Movie-Logo.png" alt="Movie Logo" id="logo"></div>
@@ -77,9 +75,17 @@
                 </div>
             </div>
 
-
             <!-- <div class="col-md-5 h-100 float-left" id="hidden-column"></div> -->
-            <div class="col-lg-7 bg-dark" id="right-side">
+            <div class="col-lg-7 bg-dark" id="right">
+
+                <!------------------ MOVIE NOT FOUND DISPLAY ----------------->
+                <div class="card mt-1" id="no-movie-info">
+                    <div class="card-body mr-n3">
+                        <h3>Movie was not found. <i class="far fa-frown"></i></h3>
+                    </div>
+                </div>
+
+                <!------------------ MOVIE NOT FOUND DISPLAY END ----------------->
 
                 <!-------------- MOVIE INFO & TRAILER CARD ------------------------->
                 <div class="card mt-1" id="movie-info">
@@ -155,12 +161,11 @@
                                         </p>
                                     </li>
                                 </ul>
-
-
                             </div>
-
                         </div>
+
                         <br>
+
                         <!-------------- STREAMING INFO ------------------------->
                         <div class="card border-0 mr-2">
                             <h5 class="card-header bg-white border-bottom" id="movie-title"><i class="far fa-eye"></i> Can You Stream It?</h5>
@@ -203,28 +208,28 @@
                             </div>
 
                         </div>
+
+                        <!------------------- END STREAMING INFO ------------------------->
+
                         <!--------------------- TRAILER SECTION --------------------->
                         <div class="embed-responsive embed-responsive-16by9  mt-2 rounded" id="trailer">
                         </div>
+
+                        <!------------------- END TRAILER SECTION --------------------->
                     </div>
                 </div>
 
                 <!-------------- END MOVIE INFO CARD ------------------------->
 
-
                 <br>
-
-
-
-
 
                 <!-------------- MOVIE THEATER INFO ------------------------->
                 <div class="card mt-n3 movie-theater-info">
                     <h5 class="card-header" id="theater-search">Find a Theater and Time Near You </h5>
 
+                    <!---------- GOOGLE MAPS CODE ------------->
                     <div class="card-body">
 
-                        <!---------- GOOGLE MAPS CODE ------------->
 
                         <!---zip code input field-->
                         <input class="form-control-default" type="text" id="zipCode" placeholder="Enter Zip Code"></input>
@@ -241,30 +246,22 @@
 
                             <!-- Map appears here -->
                             <div id="map"></div>
-
-
                         </div>
-                        <!--End Google Maps-->
-
-
-
                     </div>
+                    <!------------- END GOOGLE MAPS CODE --------------->
+
                 </div>
 
-
-
-                <!-------------- MOVIE THEATER INFO ------------------------->
-                <!--Grid column-->
                 <div class="row" id="results-row">
                     <div class="col-md-6 col-sm-12 mt-2" id="theaters-col"></div>
-                    <!-- <div class="col-12" id="movie-theater-trailer-col"></div> -->
                     <div class="col-md-6 col-sm-12 mt-2" id="showtimes-col"></div>
                 </div>
+                <!----------------END MOVIE THEATER INFO---------------------->
+
             </div>
         </div>
     </div>
 
-    <!----------------------------------------------END MOVIE THEATER INFO---------------------------------------------------->
 
     <!--Footer-->
     <footer class="py-3 bg-dark text-white-50" style="border-width:4px !important; bottom:0; width:100%;">
@@ -273,12 +270,8 @@
         </div>
     </footer>
 
-
-
-    </div>
     <!-- Jquery & Javascript-->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-
 
     <!--Google Maps API ID-->
     <script src="assets/js/gracenote.js"></script>
@@ -288,7 +281,6 @@
 
     <!-- Link to Moment.js -->
     <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.js"></script>
-
 
 </body>
 
