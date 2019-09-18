@@ -97,39 +97,6 @@ function displayShowtimes(key) {
 
 }
 
-// To fully reset the page without having to refresh.  Otherwise another movie can simply be selected from the list,
-// and the videos and playing times for it will be shown.
-function resetPage() {
-    let locationSearchCard = `<div class="card text-center border-light bg-transparent" id="location-search-card">
-                                    <div class="card-header bg-transparent border-light text-black">
-                                        Search for Movies
-                                    </div>
-                                    <div class="card-body">
-                                        <form>
-                                            <div class="form-group mb-0 text-black text-center">
-                                                <label for="inputZip" class="form-label">Zip:</label>
-                                            </div>
-                                            <div class="form-group text-center">
-                                                <input type="number" name="quantity" class="form-control" id="inputZip" placeholder="30345">
-                                            </div>
-                                            <div class="form-group text-center">
-                                                <button class="btn btn-outline-light" id="submit-zip" type="submit">Submit</button>
-                                            </div>
-                                            <div class="form-group mb-0 text-black text-center">
-                                                <p class="text-center">Or</p>
-                                            </div>
-                                            <div class="form-group text-black text-center">
-                                                <button class="btn btn-outline-light" id="use-location" type="submit">Use My Location</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>`;
-
-    $("#search-column").append(locationSearchCard);
-
-
-}
-
 
 // API Query Functions =================================================================================================
 // Based on Zip Code Input
@@ -154,18 +121,6 @@ function queryZGracenoteAPI(date, zipCode) {
         }).catch(console.log)
 
 }
-
-// Button Click Functions ==============================================================================================
-$("#reset-search").on("click", function(event) {
-    event.preventDefault();
-    console.log('Reset');
-
-    $("#theaters-col, #showtimes-col").empty();
-    resetPage();
-    $("#reset-search").hide();
-
-});
-
 
 $(document).on("click", "#search", function(event) {
     event.preventDefault();
