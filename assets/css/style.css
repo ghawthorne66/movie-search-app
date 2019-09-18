@@ -3,9 +3,13 @@ body {
     font-family: 'Noto Sans', sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: 'Fjalla One', sans-serif;
-
 }
 
 h6 {
@@ -13,9 +17,14 @@ h6 {
     padding-right: 8px;
 }
 
-#right-side{
+#right-side {
     background: url(../images/dark-honeycomb.png) repeat !important;
 }
+
+footer {
+    border-top: 2px solid #ef4273
+}
+
 
 footer{
     border-top: 2px solid #ef4273
@@ -144,7 +153,8 @@ footer{
 
 #streaming-info,
 #movie-info,
-#trailer {
+#trailer,
+#no-movie-info {
     display: none;
 }
 
@@ -203,8 +213,7 @@ footer{
     display: block;
 }
 .place {
-    font-size:1.7em
-
+    font-size: 1.7em
 }
 
 .details {
@@ -235,7 +244,7 @@ a {
     overflow: auto;
 }
 
-#panel{
+#panel {
     margin: 10% 0 0 1.5vw;
     border-radius: 15px;
     padding: 2vh;

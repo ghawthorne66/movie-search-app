@@ -43,6 +43,7 @@ $(document).ready(function() {
     }
 
     $("#submit").on("click", function(event) {
+        $("#no-movie-info").css("display", "none");
         event.preventDefault();
 
         // Gets movie entered by user
@@ -57,12 +58,9 @@ $(document).ready(function() {
     $("#search").on("click", function(event) {
         // Clear map 
         deleteMarkers();
-        //console.log("Searching...");
-        //console.log($("#zipCode"));
-        var zipCode = $("#zipCode").val();
 
-        //console.log("-----------> Calling on getNearbyPlaces");
-        //console.log("-----------> Calling on zipCode: " + zipCode);
+        // Gets nearby places using the zip code the user inputted
+        var zipCode = $("#zipCode").val();
         getNearbyPlaces({ lat: 32.715736, lng: -117.161087 }, zipCode);
     })
 
@@ -128,51 +126,58 @@ $(document).ready(function() {
             }
         }).then(function(response) {
             console.log(response);
+            if (response.Error === "Movie not found!") {
+                $("#no-movie-info").css("display", "block");
+            } else {
+                //Title, Director, Genre, Plot, Poster, Rated, Released, Year, Runtime
+                var director = response.Director;
+                $("#movie-director").text(director);
 
-            //Title, Director, Genre, Plot, Poster, Rated, Released, Year, Runtime
-            var director = response.Director;
-            $("#movie-director").text(director);
+                var rating = response.Rated;
+                $("#movie-rated").text(rating);
 
-            var rating = response.Rated;
-            $("#movie-rated").text(rating);
+                var title = response.Title;
+                $("#movie-title").text(title);
 
-            var title = response.Title;
-            $("#movie-title").text(title);
+                var genre = response.Genre;
+                $("#movie-genre").text(genre);
 
-            var genre = response.Genre;
-            $("#movie-genre").text(genre);
+                var plot = response.Plot;
+                $("#movie-plot").text(plot);
 
-            var plot = response.Plot;
-            $("#movie-plot").text(plot);
+                var imgURL = response.Poster;
+                $("#movie-poster").attr("src", imgURL);
 
-            var imgURL = response.Poster;
-            $("#movie-poster").attr("src", imgURL);
+                var released = response.Released;
+                $("#movie-release").text(released);
 
-            var released = response.Released;
-            $("#movie-release").text(released);
+                var runtime = response.Runtime;
+                $("#movie-runtime").text(runtime);
 
-            var runtime = response.Runtime;
-            $("#movie-runtime").text(runtime);
+                var actors = response.Actors;
+                $("#movie-actors").text(actors);
 
-            var actors = response.Actors;
-            $("#movie-actors").text(actors);
+                var ratedIMDB = response.Ratings[0].Value;
+                $("#imdb-score").text(ratedIMDB);
 
-            var ratedIMDB = response.Ratings[0].Value;
-            $("#imdb-score").text(ratedIMDB);
+                var ratedRt = response.Ratings[1].Value;
+                $("#rt-aud-score").text(ratedRt);
 
-            var ratedRt = response.Ratings[1].Value;
-            $("#rt-aud-score").text(ratedRt);
+                var ratedMc = response.Ratings[2].Value;
+                $("#metacritic-score").text(ratedMc);
 
-            var ratedMc = response.Ratings[2].Value;
-            $("#metacritic-score").text(ratedMc);
+                // Displays movie info after movie has been searched
+                $("#movie-info").css("display", "block");
+                $("#streaming-info").css("display", "block");
+                $("#trailer").css("display", "block");
+
+                getStreamingInfo(movie);
+
+            }
+
         })
 
-        getStreamingInfo(movie);
 
-        // Displays movie info after movie has been searched
-        $("#movie-info").css("display", "block");
-        $("#streaming-info").css("display", "block");
-        $("#trailer").css("display", "block");
     }
 
     // Adds a movie card to the list-favorites div
@@ -380,7 +385,7 @@ function getNearbyPlaces(position, query) {
 
     service = new google.maps.places.PlacesService(map);
     service.textSearch(request, nearbyCallback);
-    
+
 }
 
 // Handle the results (up to 20) of the Nearby Search
@@ -397,7 +402,7 @@ function createMarkers(places) {
         // console.log(" ")
         // console.log(" ")
         // console.log(" ")
-        
+
         map.setCenter(place.geometry.location);
         let marker = new google.maps.Marker({
             position: place.geometry.location,
@@ -503,5 +508,3 @@ function deleteMarkers() {
         markers[i].setMap(null);
     }
 }
-
-
