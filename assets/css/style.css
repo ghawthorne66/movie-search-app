@@ -217,3 +217,25 @@ a {
 #map-container-google-2 {
     overflow: auto;
 }
+/*--------------NEW CODE-----------------------------*/
+.card-header:first-child {
+    border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+}
+
+#movie-title-display {
+    max-height: 87vh;
+    /* max-height: calc(100vh - 272px); */
+    overflow: auto;
+}
+.card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+}
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+user agent stylesheet
+div {
+    display: block;
+}

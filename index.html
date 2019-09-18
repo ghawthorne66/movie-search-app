@@ -263,28 +263,113 @@
     </div>
 
     <!-------------- MOVIE THEATER INFO ------------------------->
-                <!-- <div class="card my-4">
-                    <h5 class="card-header" id="theater-search">Find a Theater Near You </h5>
-                      
-                    <div class="card-body"> -->
 
-                        <div class="card my-4">
-                            <h5 class="card-header" id="showtimeRow">showtime row</h5>
-                            <div class="card-body px-5">
-                        <p id ="theatre-display">
+<!-------------------------NEW CODE-------------------------->
 
-                              
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+            </li>-->
+            <li class="nav-item">
+                <a class="nav-link" href="results.html">Results Page</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" id="reset-search">Reset</button>
+            <button class="btn btn-outline-danger my-2 ml-2 my-sm-0" id="firebase-signout">Sign Out</button>
+            <button class="btn btn-outline-warning my-2 ml-2 my-sm-0" id="firebase-login">Login</button>
+        </form>
+    </div>
+</nav>
 
-                                <ul class="list-group list-group-flush">
-                                        <li class="list-group-item my-n1">
-                                                <input type="" class="form-control shadow" id="movie-input" placeholder="Enter Title">
-                                            <!-- <h6>Genre:</h6>
-                                            <h6 id="movie-showtimeRow">Drama, Animated</h6> -->
-                                        </li>
-                
-                
-                
-                        </p>
+<!-- Full Page Intro -->
+<div class="view">
+    <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+        <!-- Content -->
+        <div class="container-fluid">
+            <!--Grid row-->
+            <div class="row">
+                <!--Grid column-->
+                <div class="col-md-12 mb-4 text-white text-center">
+                    <h1 class="h1 font-weight-bold mb-0 pt-md-5 pt-5">
+                        <!-- <img src="assets/images/filmperson.jpeg"  class="d-inline-block align-top mr-3"
+                                                            id="film-guy" height="100" width="100"> -->
+                        <strong>CineCache</strong></h1>
+                </div>
+                <!--Grid column-->
+            </div>
+            <div class="row m-5 align-content-center" id="search-row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4" id="search-column">
+                    <div class="card text-center border-light bg-transparent" id="location-search-card">
+                        <div class="card-header bg-transparent border-light text-white">
+                            Search for Movies
+                        </div>
+                        <!-- <div class="card-body">
+                            <form>
+
+                            <div class="form-group text-white text-center">
+                                    <label for="inputLandmark" class="col-form-label">Landmark:</label>
+                                </div>
+                                <div class="form-group text-center">
+                                    <input type="text" class="form-control" id="inputLandmark" placeholder="Georgia World Congress Center, e.g.">
+                                    <button class="btn btn-outline-light" id="submit-landmark" type="submit">Submit</button>
+                                </div> 
+
+                                <div class="form-group mb-0 text-white text-center">
+                                    <label for="inputZip" class="form-label">Zip:</label>
+                                </div>
+                                <div class="form-group text-center">
+                                    <input type="number" name="quantity" class="form-control" id="inputZip"
+                                           placeholder="30345">
+                                </div>
+                                <div class="form-group text-center">
+                                    <button class="btn btn-outline-light" id="submit-zip" type="submit">Submit</button>
+                                </div>
+                                <div class="form-group mb-0 text-white text-center">
+                                    <p class="text-center">Or</p>
+                                </div>
+                                <div class="form-group text-white text-center">
+                                    <button class="btn btn-outline-light" id="use-location" type="submit">Use My
+                                        Location
+                                    </button>
+                                </div>
+                            </form>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+            <div class="row m-5" id="results-row">
+                <div class="col-lg-4 col-md-6 col-sm-12" id="column-1"></div>
+                <div class="col-lg-4 col-md-6 col-sm-12" id="column-2"></div>
+                <div class="col-lg-4 col-md-12 col-sm-12" id="column-3"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Login Modal Code -->
+<div class="modal fade" tabindex="-1" role="dialog" id="login-modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Login</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="firebaseui-auth-container">
+                <p>Login or sign up. </p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!----------------------------------------------NEW CODE COMPLETE---------------------------------------------------->
 
 
 
@@ -297,6 +382,19 @@
     <script src="assets/js/app.js"></script>
 
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZO_pTbNs6Aq-YWHEM7Z_42_eqTDuOwd4&libraries=places&callback=initMap"></script>
+
+    <!-- Link to jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- Link to Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<!-- Link to Boostrap Javascript Plugins -->
+<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script> -->
+<!-- Link to Moment.js -->
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.js"></script>
 
 
 
