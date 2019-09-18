@@ -9,7 +9,7 @@ let infoPane;
 let markers = [];
 let year;
 
-$(document).ready(function() {
+$(document).ready(function () {
 
     // Sticky Search Bar
 
@@ -25,7 +25,7 @@ $(document).ready(function() {
         }
 
     }
-    $(function() {
+    $(function () {
         $(window).scroll(sticktothetop);
         sticktothetop();
     });
@@ -42,7 +42,7 @@ $(document).ready(function() {
         }
     }
 
-    $("#submit").on("click", function(event) {
+    $("#submit").on("click", function (event) {
         event.preventDefault();
 
         // Gets movie entered by user
@@ -54,7 +54,7 @@ $(document).ready(function() {
         getMovieInfo(movie);
     })
 
-    $("#search").on("click", function(event) {
+    $("#search").on("click", function (event) {
         // Clear map 
         deleteMarkers();
         //console.log("Searching...");
@@ -67,7 +67,7 @@ $(document).ready(function() {
     })
 
     // Adds movie to favorites when heart is clicked
-    $("#fav-heart").on("click", function() {
+    $("#fav-heart").on("click", function () {
         var movieTitle = $("#movie-title").text();
         var moviePoster = $("#movie-poster").attr("src");
         // Returns first object in movie array that has a matching movie title to the current movie being removed
@@ -87,12 +87,12 @@ $(document).ready(function() {
     })
 
     // When info is clicked, the movie's information will be displayed
-    $("#list-favorites").on("click", ".info-btn", function() {
+    $("#list-favorites").on("click", ".info-btn", function () {
         getMovieInfo($(this).parent().parent().parent().attr("data-movie"));
     })
 
     // Removes movie from favorites
-    $("#list-favorites").on("click", ".remove-btn", function() {
+    $("#list-favorites").on("click", ".remove-btn", function () {
         var movieTitle = $(this).parent().parent().parent().attr("data-movie");
 
         // Returns first object in movie array that has a matching movie title to the current movie being removed
@@ -123,10 +123,10 @@ $(document).ready(function() {
         $.ajax({
             url: omdbQueryURL,
             method: "GET",
-            success: function(response) {
+            success: function (response) {
                 getYoutubeTrailer(movie, response.Year);
             }
-        }).then(function(response) {
+        }).then(function (response) {
             console.log(response);
 
             //Title, Director, Genre, Plot, Poster, Rated, Released, Year, Runtime
@@ -208,7 +208,7 @@ $(document).ready(function() {
         $.ajax({
             url: youtubeQueryURL,
             method: "GET"
-        }).then(function(response) {
+        }).then(function (response) {
             console.log(response);
 
             // Clears out current placeholder trailer
@@ -239,7 +239,7 @@ $(document).ready(function() {
             }
         }
 
-        $.ajax(settings).done(function(response) {
+        $.ajax(settings).done(function (response) {
             console.log(response);
 
             // Creates array of streaming sites and their corresponding ID roots
@@ -309,63 +309,86 @@ $(document).ready(function() {
 function initMap() {
     // Initialize variables
     bounds = new google.maps.LatLngBounds();
-    infoWindow = new google.maps.InfoWindow;
+    infoWindow = new google.maps.InfoWindow(); // shouldn't function be invoked when using the new keyword?
     currentInfoWindow = infoWindow;
 
     infoPane = document.getElementById('panel');
+    pos = {
+        lat: 32.7157,
+        lng: -117.1611
 
-    // HTML5 geolocation 
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(position => {
-            pos = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-                    //lat: 35.393528,
-                    //lng: -119.043732
-            };
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: pos,
-                zoom: 16
-            });
-            bounds.extend(pos);
-
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
-            infoWindow.open(map);
-            map.setCenter(pos);
-
-            // Call Places Nearby Search on user's location
-            getNearbyPlaces(pos, "");
-        }, () => {
-            // Browser supports geolocation, but user has denied permission
-            handleLocationError(true, infoWindow);
-        });
-    } else {
-        // Browser doesn't support geolocation
-        handleLocationError(false, infoWindow);
-    }
-}
-
-// Handle a geolocation error
-function handleLocationError(browserHasGeolocation, infoWindow) {
-    // Set default location to San Diego, Ca
-    pos = { lat: 32.715736, lng: -117.161087 };
+    };
     map = new google.maps.Map(document.getElementById('map'), {
         center: pos,
-        zoom: 15
+        zoom: 16
     });
+    bounds.extend(pos);
 
-    // Display an InfoWindow at the map center
     infoWindow.setPosition(pos);
-    infoWindow.setContent(browserHasGeolocation ?
-        'Geolocation permissions denied. Using default location.' :
-        'Error: Your browser doesn\'t support geolocation.');
+    infoWindow.setContent('Location found.');
     infoWindow.open(map);
-    currentInfoWindow = infoWindow;
+    // map.setCenter(pos);
 
-    // Call Places Nearby Search on the default location
-    getNearbyPlaces(pos, "92101");
+    // Call Places Nearby Search on user's location
+    getNearbyPlaces(pos, "");
+
+    // HTML5 geolocation 
+    // if (navigator.geolocation) {
+    //     navigator.geolocation.getCurrentPosition(position => {
+    //         pos = {
+    //             lat: 35.393528,
+    //             lng: -119.043732
+
+    //         };
+    //         map = new google.maps.Map(document.getElementById('map'), {
+    //             center: pos,
+    //             zoom: 16
+    //         });
+    //         bounds.extend(pos);
+
+    //         infoWindow.setPosition(pos);
+    //         infoWindow.setContent('Location found.');
+    //         infoWindow.open(map);
+    //         map.setCenter(pos);
+
+    //         // Call Places Nearby Search on user's location
+    //         getNearbyPlaces(pos, "");
+    //     },
+
+    //         () => {
+    //             // Browser supports geolocation, but user has denied permission
+    //             handleLocationError(true, infoWindow);
+    //         });
+    // } else {
+    //     // Browser doesn't support geolocation
+    //     handleLocationError(false, infoWindow);
+    // }
 }
+
+/////////////////////////////
+
+// Handle a geolocation error
+// function handleLocationError(browserHasGeolocation, infoWindow) {
+//     // Set default location to San Diego, Ca
+//     pos = { lat: 32.715736, lng: -117.161087 };
+//     map = new google.maps.Map(document.getElementById('map'), {
+//         center: pos,
+//         zoom: 15
+//     });
+
+//     // Display an InfoWindow at the map center
+//     infoWindow.setPosition(pos);
+//     infoWindow.setContent(browserHasGeolocation ?
+//         'Geolocation permissions denied. Using default location.' :
+//         'Error: Your browser doesn\'t support geolocation.');
+//     infoWindow.open(map);
+//     currentInfoWindow = infoWindow;
+
+//     // Call Places Nearby Search on the default location
+//     getNearbyPlaces(pos, "92101");
+// }
+
+/////////////////////////////
 
 // Perform a Places Nearby Search Request
 function getNearbyPlaces(position, query) {
@@ -380,7 +403,7 @@ function getNearbyPlaces(position, query) {
 
     service = new google.maps.places.PlacesService(map);
     service.textSearch(request, nearbyCallback);
-    
+
 }
 
 // Handle the results (up to 20) of the Nearby Search
@@ -397,7 +420,7 @@ function createMarkers(places) {
         // console.log(" ")
         // console.log(" ")
         // console.log(" ")
-        
+
         map.setCenter(place.geometry.location);
         let marker = new google.maps.Marker({
             position: place.geometry.location,
