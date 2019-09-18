@@ -11,6 +11,8 @@ function displayMovies() {
                         <div class="card-header bg-white border-light text-black">Currently Playing Nearby</div>
                         <div class="card-body" id="movie-title-display">`;
 
+    $("#theaters-col").empty();
+    $("#showtimes-col").empty();
     $("#theaters-col").append(movieCard);
 
     for (var k = 0; k < currentMovies.length; k++) {
@@ -157,38 +159,6 @@ function queryZGracenoteAPI(date, zipCode) {
 
 }
 
-// Query YouTube for movie trailers/videos - Currently Set for 6.
-function queryYoutubeAPI(key) {
-
-    let resultsNum = "6";
-    let searchMovie = `${currentMovies[key].title} movie 2018`;
-    let apiKey = 'AIzaSyBxq4l59TeNIU8ISsodXpdxmvnMZIWa3LU';
-    let queryURL = `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&maxResults=${resultsNum}&part=snippet&q=${searchMovie}&type=video`;
-
-    $.ajax({
-            url: queryURL,
-            method: "GET"
-        })
-        .then(function(response) {
-            let snippets = response.items;
-            let videos = [];
-
-            for (var k = 0; k < snippets.length; k++) {
-                videos.push(`https://www.youtube.com/embed/${snippets[k].id.videoId}`);
-            }
-
-            for (var v = 0; v < snippets.length; v++) {
-                let movieVideo = $(`<div class="row mb-3"><div class="embed-responsive embed-responsive-16by9">
-                                <iframe class="embed-responsive-item" src=${videos[v]} allowfullscreen></iframe>
-                                    </div></div>`);
-
-                $("#movie-theater-trailer").append(movieVideo);
-            }
-
-        }).catch(console.log);
-
-}
-
 // Button Click Functions ==============================================================================================
 $("#reset-search").on("click", function(event) {
     event.preventDefault();
@@ -261,7 +231,6 @@ $(document).on("click", ".movie-title", function() {
 
     $("#movie-theater-trailer-col, #showtimes-col").empty();
 
-    queryYoutubeAPI(key);
     displayShowtimes(key);
 
 });
