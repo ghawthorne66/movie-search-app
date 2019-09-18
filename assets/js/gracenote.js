@@ -1,121 +1,4 @@
 
-// //Create an event listener to search movie by title
-
-// ////////////////USED///////////////////
-
-// var movieName;
-
-// var moviesAndRootIDs = [];
-
-// $("#submit").on('click', function(){
-//  movieName = $("#movie-input").val().trim;
-//  alert('you clicked me!');
-//  console.log(movieName)
- 
-// })
-// ////////////////USED///////////////////
-
-// // Creating an AJAX call for the specific movie button being clicked
-
-// ////////////////USED///////////////////
-
-// var gracenoteQueryURL = "http://data.tmsapi.com/v1.1/movies/showings?startDate=2019-09-17&zip=92101&lat=32.7157&lng=-117.1611&radius=100&units=mi&imageSize=Md&imageText=true&api_key=ggxa8rz4a4a3sxvsf5xggtu5";
-// console.log(gracenoteQueryURL);
-//   ////////////////USED///////////////////
-// //create an event that when clicked will search zip code
-//   //display title, theatre, showtimes
-
-// //array = [{
-//    // movieName: tmsID
-
-// //}]
-// ////////////////USED///////////////////
-//    var theatreNameArray = [];
-
-// // Creating an AJAX call for the specific movie button being clicked
-// $.ajax({
-//   url: gracenoteQueryURL,
-//   method: "GET"
-// }).then(function(response) {
-//   console.log(response);
-
-
-//   for (var i = 0; i < response.length; i++) {
-//     var movieTitle = response[i].title;
-//     var movieRootID = response[i].rootId;
-  
-//     var tempObj = {};
-//     tempObj[movieTitle] = movieRootID;
-
-//     moviesAndRootIDs.push(tempObj);
-
-//   }
-  
-
-
-//   console.log(moviesAndRootIDs);
-// ////////////////USED///////////////////
-  
-//   // create an element to hold the text
-//   // append that element to the page
-
-//   //  $(document).ready(function () {
-//   //movie, theatre name and place,showtimes;
-// ////////////////USED///////////////////
-//    var showtimeRow = response.showtimes;
-//   $("#movie-showtimeRow").text(showtimeRow);
-  
-
-//   // loop through the response, limit to 5 results 
-//   for (i = 0; i < response.length; i++) {
-//     // create an element to hold the theater name
-
-//     var newArrItem = response[i].showtimes[0].theatre.name
-
-//     if (theatreNameArray.indexOf(newArrItem) === -1) {
-//         theatreNameArray.push(newArrItem)
-
-//     }
-// ////////////////USED///////////////////
-    
-// // console.log(theatreNameArray);
-
-// ////////////////USED///////////////////
-//     var theatreElement = $("<p>");
-
-//     ////////////////USED///////////////////
-    
-//     // set the text of that element = the theater name 
-//     // theatreElement.text(response[i].showtimes[0].theatre.name)
-//     // append that element to the page 
-//     // $("#theatre-display").append(theatreElement);
-
-//     // showtimeObject = response[i].showtimes;
-
-//     // for (j = 0; j < showtimeObject.length; j++) {
-//     //   var theatre = $("<td>").text(showtimeObject[i].theatre.name);
-
-//     //   showtimeRow.text(theatre);
-//     //   datetime = $("<td>").text(showtimeObject[i].dateTime);
-//     //   showtimeRow.append(datetime);
-
-//     //   $("#time-table").append(text);
-//     // }
-
-//     ////////////////USED///////////////////////////////////USED///////////////////
-//   }
-// }, function(error) {
-//   console.log(error);
-// })
-
-////////////////USED///////////////////
-
-
-
-
-
-////////////NEW CODE//////////////////////
-
 
 // Global Object to Hold Movie Query Data ==============================================================================
 let currentMovies = {};
@@ -126,8 +9,8 @@ function displayMovies() {
     console.log(" ")
     console.log(" ")
     console.log("=========================================== displayMovies ================================")
-    let movieCard = `<div class="card text-center border-light bg-transparent">
-                        <div class="card-header bg-transparent border-light text-white">Currently Playing Nearby</div>
+    let movieCard = `<div class="card text-center border-md bg-white">
+                        <div class="card-header bg-white border-light text-black">Currently Playing Nearby</div>
                         <div class="card-body" id="movie-title-display">`;
 
     $("#column-1").append(movieCard);
@@ -136,7 +19,7 @@ function displayMovies() {
         let movieTitle = currentMovies[k].title;
 
         let movieCardTitle = `<a href="javascript:;" class="movie-title" id="${k}">
-                                <p class="card-text text-white">${movieTitle}</p></a>`;
+                                <p class="card-text text-black">${movieTitle}</p></a>`;
 
         $("#movie-title-display").append(movieCardTitle);
         console.log("=========================================== DONE with displayMovies ================================")
@@ -167,17 +50,17 @@ function displayShowtimes(key) {
     console.log(showtimes);
 
     let movieCard = `<div class="card text-center border-light bg-transparent">
-                        <h5 class="card-header bg-transparent border-light text-white">${title} (${rated})</h5>
+                        <h5 class="card-header bg-transparent border-light text-black">${title} (${rated})</h5>
                         <div class="card-body" id="movie-data-display">
-                            <p class="card-text text-white">Released: ${releaseDate}</p>
-                            <p class="card-text text-white">${short}</p>
-                            <a href="${movieURL}" target="_blank"><p class="card-text text-white">Official Website</p></a>
+                            <p class="card-text text-black">Released: ${releaseDate}</p>
+                            <p class="card-text text-black">${short}</p>
+                            <a href="${movieURL}" target="_blank"><p class="card-text text-black">Official Website</p></a>
                             <table class="table table-hover" id="ticket-times">
                               <thead>
                                 <tr>
-                                  <th scope="col"><p class="text-white">Time</p></th>
-                                  <th scope="col"><p class="text-white">Theater</p></th>
-                                  <th scope="col"><p class="text-white">Tickets</p></th>
+                                  <th scope="col"><p class="text-black">Time</p></th>
+                                  <th scope="col"><p class="text-black">Theater</p></th>
+                                  <th scope="col"><p class="text-black">Tickets</p></th>
                                 </tr>
                               </thead>
                               <tbody></tbody>
@@ -202,9 +85,9 @@ function displayShowtimes(key) {
             let ticketURL = showtimes[m].ticketURI;
 
             let ticketTimeData = `<tr>
-                                  <td><p class="text-white">${screeningAdj.format("h:mm A")}</p></td>
-                                  <td><p class="text-white">${venue}</p></td>
-                                  <td><a href="${ticketURL}" target="_blank"><p class="text-white">Link</p></a></td>
+                                  <td><p class="text-black">${screeningAdj.format("h:mm A")}</p></td>
+                                  <td><p class="text-black">${venue}</p></td>
+                                  <td><a href="${ticketURL}" target="_blank"><p class="text-black">Link</p></a></td>
                                 </tr>`;
 
             $("#ticket-times tbody").append(ticketTimeData);
@@ -222,12 +105,12 @@ function displayShowtimes(key) {
 // and the videos and playing times for it will be shown.
 function resetPage() {
     let locationSearchCard = `<div class="card text-center border-light bg-transparent" id="location-search-card">
-                                    <div class="card-header bg-transparent border-light text-white">
+                                    <div class="card-header bg-transparent border-light text-black">
                                         Search for Movies
                                     </div>
                                     <div class="card-body">
                                         <form>
-                                            <div class="form-group mb-0 text-white text-center">
+                                            <div class="form-group mb-0 text-black text-center">
                                                 <label for="inputZip" class="form-label">Zip:</label>
                                             </div>
                                             <div class="form-group text-center">
@@ -236,10 +119,10 @@ function resetPage() {
                                             <div class="form-group text-center">
                                                 <button class="btn btn-outline-light" id="submit-zip" type="submit">Submit</button>
                                             </div>
-                                            <div class="form-group mb-0 text-white text-center">
+                                            <div class="form-group mb-0 text-black text-center">
                                                 <p class="text-center">Or</p>
                                             </div>
-                                            <div class="form-group text-white text-center">
+                                            <div class="form-group text-black text-center">
                                                 <button class="btn btn-outline-light" id="use-location" type="submit">Use My Location</button>
                                             </div>
                                         </form>
@@ -247,7 +130,10 @@ function resetPage() {
                                 </div>`;
 
     $("#search-column").append(locationSearchCard);
+    
+
 }
+
 
 // API Query Functions =================================================================================================
 // Based on Zip Code Input
@@ -267,25 +153,6 @@ function queryZGracenoteAPI(date, zipCode) {
             currentMovies = response;
             // console.log(response);
             console.log("Got a response: " + JSON.stringify(response))
-            displayMovies();
-
-        }).catch(console.log)
-
-}
-
-// Based on HTML Location Data
-function queryLGracenoteAPI(date, lat, lng) {
-
-    let apiKey = 'zmxbv8fhjnt7j6q4uedn4vpv';
-    let queryURL = `https://data.tmsapi.com/v1.1/movies/showings?startDate=${date}&lat=${lat}&lng=${lng}&api_key=${apiKey}`;
-
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    })
-        .then(function (response) {
-            currentMovies = response;
-            // console.log(response);
             displayMovies();
 
         }).catch(console.log)
@@ -335,47 +202,6 @@ $("#reset-search").on("click", function (event) {
 
 });
 
-$("#firebase-login").on("click", function (event) {
-    event.preventDefault();
-    console.log("Login");
-
-    $("#login-modal").modal('show');
-
-});
-
-$("#firebase-signout").on("click", function (event) {
-    event.preventDefault();
-    console.log("Sign-out");
-
-    firebase.auth().signOut().then(function () {
-        // Sign-out successful.
-    }).catch(function (error) {
-        // An error happened.
-    });
-
-});
-
-// Dynamic Button Functions ============================================================================================
-// $(document).on("click", "#submit-zip", function (event) {
-//     event.preventDefault();
-//     console.log(" ")
-//     console.log(" ")
-//     console.log(" ")
-//     console.log("=========================================== Search By Zip Code ================================")
-//     let zipCode = $("#inputZip").val().trim();
-//     console.log(`Search by Zip: ${zipCode}`);
-
-//     let date = moment().format('YYYY-MM-DD');
-//     console.log(date);
-
-//     queryZGracenoteAPI(date, zipCode);
-
-//     $("#inputZip").val("");
-//     $("#search-column").empty();
-//     $("#reset-search").show();
-
-// });
-
 
 $(document).on("click", "#search", function (event) {
   event.preventDefault();
@@ -390,10 +216,6 @@ $(document).on("click", "#search", function (event) {
   console.log(date);
 
   queryZGracenoteAPI(date, zipCode);
-
-  // $("#inputZip").val("");
-  // $("#search-column").empty();
-  // $("#reset-search").show();
 
 });
 

@@ -337,6 +337,7 @@ function getNearbyPlaces(position, query) {
 
     service = new google.maps.places.PlacesService(map);
     service.textSearch(request, nearbyCallback);
+    
 }
 
 // Handle the results (up to 20) of the Nearby Search
@@ -459,3 +460,5 @@ function deleteMarkers() {
         markers[i].setMap(null);
     }
 }
+
+

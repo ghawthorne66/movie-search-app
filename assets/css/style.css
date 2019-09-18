@@ -198,6 +198,7 @@ a {
 #search {
     padding-bottom: 1px;
     margin-bottom: 5px;
+    background-color: #ef4273
 }
 
 #zipCode {
@@ -218,12 +219,22 @@ a {
     overflow: auto;
 }
 /*--------------NEW CODE-----------------------------*/
+
+.color-blk {
+
+    color: black;
+}
+
 .card-header:first-child {
+    color: black;
     border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+    border-block-color: #ef4273
 }
 
 #movie-title-display {
     max-height: 87vh;
+    color: black;
+    background-color: #ec6188
     /* max-height: calc(100vh - 272px); */
     overflow: auto;
 }
@@ -231,6 +242,7 @@ a {
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
     padding: 1.25rem;
+    color: black;
 }
 *, ::after, ::before {
     box-sizing: border-box;
@@ -238,4 +250,14 @@ a {
 user agent stylesheet
 div {
     display: block;
+}
+
+.card {
+    color: black;
+    background-color: white;
+}
+
+
+.card-text.text-black {
+    color: black;
 }
