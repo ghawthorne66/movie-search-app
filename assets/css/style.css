@@ -26,9 +26,9 @@ h6 {
     border-right: 4px solid #ef4273;
 }
 
-.left-contents {
+/* .left-contents {
     /*--- Fill for Responsive ---*/
-}
+/* } */ */
 
 #submit {
     background: #ef4273;
@@ -228,13 +228,11 @@ a {
 .card-header:first-child {
     color: black;
     border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
-    border-block-color: #ef4273
 }
 
 #movie-title-display {
     max-height: 87vh;
     color: black;
-    background-color: #ec6188
     /* max-height: calc(100vh - 272px); */
     overflow: auto;
 }
