@@ -1,10 +1,20 @@
 body {
     background: #343a40;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6{
+    font-family: 'Fjalla One', sans-serif;
+
 }
 
 h6 {
     display: inline;
     padding-right: 8px;
+}
+
+#right-side{
+    background: url(../images/dark-honeycomb.png) repeat !important;
 }
 
 footer{
@@ -76,11 +86,11 @@ footer{
 
 /* ----------- Favorite Heart -----------*/
 
-.fa-heart {
+.fas.fa-heart {
     cursor: pointer;
 }
 
-.fa-heart:hover::before {
+.fas.fa-heart:hover::before {
     color: #ef4273;
 }
 
@@ -192,9 +202,9 @@ footer{
     max-height: 200px;
     display: block;
 }
-
 .place {
-    font-family: 'open sans', arial, sans-serif;
+    font-size:1.7em
+
 }
 
 .details {
@@ -223,6 +233,12 @@ a {
 
 #map-container-google-2 {
     overflow: auto;
+}
+
+#panel{
+    margin: 10% 0 0 1.5vw;
+    border-radius: 15px;
+    padding: 2vh;
 }
 
 
