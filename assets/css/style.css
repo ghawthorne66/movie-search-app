@@ -159,9 +159,12 @@ footer{
 }
 
 .scroll {
-    max-height: 50vh;
-    height: 100%;
     overflow-y: auto;
+}
+
+#favorite-section{
+    max-height: 35vh;
+
 }
 
 
