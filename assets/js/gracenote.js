@@ -142,7 +142,7 @@ function queryZGracenoteAPI(date, zipCode) {
     console.log(" ")
     console.log(" ")
     console.log("=========================================== queryZGracenoteAPI ================================")
-    let apiKey = 'zmxbv8fhjnt7j6q4uedn4vpv';
+    let apiKey = 'fu4n5h6x7xfmhq96e8zg8gnn';
     let queryURL = `https://data.tmsapi.com/v1.1/movies/showings?startDate=${date}&zip=${zipCode}&api_key=${apiKey}`;
 
     $.ajax({
