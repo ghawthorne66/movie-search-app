@@ -1,5 +1,3 @@
-
-
 // Global Object to Hold Movie Query Data ==============================================================================
 let currentMovies = {};
 // Functions ===========================================================================================================
@@ -13,7 +11,9 @@ function displayMovies() {
                         <div class="card-header bg-white border-light text-black">Currently Playing Nearby</div>
                         <div class="card-body" id="movie-title-display">`;
 
-    $("#column-1").append(movieCard);
+    $("#theaters-col").empty();
+    $("#showtimes-col").empty();
+    $("#theaters-col").append(movieCard);
 
     for (var k = 0; k < currentMovies.length; k++) {
         let movieTitle = currentMovies[k].title;
@@ -49,7 +49,7 @@ function displayShowtimes(key) {
     let showtimes = currentMovies[key].showtimes;
     console.log(showtimes);
 
-    let movieCard = `<div class="card text-center border-light bg-transparent">
+    let movieCard = `<div class="card text-center border-light bg-white">
                         <h5 class="card-header bg-transparent border-light text-black">${title} (${rated})</h5>
                         <div class="card-body" id="movie-data-display">
                             <p class="card-text text-black">Released: ${releaseDate}</p>
@@ -68,15 +68,11 @@ function displayShowtimes(key) {
                         </div>
                     </div>`;
 
-    $("#column-3").append(movieCard);
+    $("#showtimes-col").append(movieCard);
 
     for (var m = 0; m < showtimes.length; m++) {
         let currentTime = moment();
-        /*.format("h:mm A");*/
-        /*console.log(currentTime);*/
         let screeningAdj = moment(showtimes[m].dateTime);
-        /*.format("h:mm A");*/
-        /*console.log(screeningAdj);*/
         let diff = screeningAdj.diff(currentTime, 'minutes');
         if (diff > 0) {
             console.log(diff);
@@ -101,39 +97,6 @@ function displayShowtimes(key) {
 
 }
 
-// To fully reset the page without having to refresh.  Otherwise another movie can simply be selected from the list,
-// and the videos and playing times for it will be shown.
-function resetPage() {
-    let locationSearchCard = `<div class="card text-center border-light bg-transparent" id="location-search-card">
-                                    <div class="card-header bg-transparent border-light text-black">
-                                        Search for Movies
-                                    </div>
-                                    <div class="card-body">
-                                        <form>
-                                            <div class="form-group mb-0 text-black text-center">
-                                                <label for="inputZip" class="form-label">Zip:</label>
-                                            </div>
-                                            <div class="form-group text-center">
-                                                <input type="number" name="quantity" class="form-control" id="inputZip" placeholder="30345">
-                                            </div>
-                                            <div class="form-group text-center">
-                                                <button class="btn btn-outline-light" id="submit-zip" type="submit">Submit</button>
-                                            </div>
-                                            <div class="form-group mb-0 text-black text-center">
-                                                <p class="text-center">Or</p>
-                                            </div>
-                                            <div class="form-group text-black text-center">
-                                                <button class="btn btn-outline-light" id="use-location" type="submit">Use My Location</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>`;
-
-    $("#search-column").append(locationSearchCard);
-    
-
-}
-
 
 // API Query Functions =================================================================================================
 // Based on Zip Code Input
@@ -146,10 +109,10 @@ function queryZGracenoteAPI(date, zipCode) {
     let queryURL = `https://data.tmsapi.com/v1.1/movies/showings?startDate=${date}&zip=${zipCode}&api_key=${apiKey}`;
 
     $.ajax({
-        url: queryURL,
-        method: "GET"
-    })
-        .then(function (response) {
+            url: queryURL,
+            method: "GET"
+        })
+        .then(function(response) {
             currentMovies = response;
             // console.log(response);
             console.log("Got a response: " + JSON.stringify(response))
@@ -159,67 +122,23 @@ function queryZGracenoteAPI(date, zipCode) {
 
 }
 
-// Query YouTube for movie trailers/videos - Currently Set for 6.
-function queryYoutubeAPI(key) {
-
-    let resultsNum = "6";
-    let searchMovie = `${currentMovies[key].title} movie 2018`;
-    let apiKey = 'AIzaSyBxq4l59TeNIU8ISsodXpdxmvnMZIWa3LU';
-    let queryURL = `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&maxResults=${resultsNum}&part=snippet&q=${searchMovie}&type=video`;
-
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    })
-        .then(function (response) {
-            let snippets = response.items;
-            let videos = [];
-
-            for (var k = 0; k < snippets.length; k++) {
-                videos.push(`https://www.youtube.com/embed/${snippets[k].id.videoId}`);
-            }
-
-            for (var v = 0; v < snippets.length; v++) {
-                let movieVideo = $(`<div class="row mb-3"><div class="embed-responsive embed-responsive-16by9">
-                                <iframe class="embed-responsive-item" src=${videos[v]} allowfullscreen></iframe>
-                                    </div></div>`);
-
-                $("#column-2").append(movieVideo);
-            }
-
-        }).catch(console.log);
-
-}
-
-// Button Click Functions ==============================================================================================
-$("#reset-search").on("click", function (event) {
+$(document).on("click", "#search", function(event) {
     event.preventDefault();
-    console.log('Reset');
+    console.log(" ")
+    console.log(" ")
+    console.log(" ")
+    console.log("=========================================== Search By Zip Code ================================")
+    let zipCode = $("#zipCode").val().trim();
+    console.log(`Search by Zip: ${zipCode}`);
 
-    $("#column-1, #column-2, #column-3").empty();
-    resetPage();
-    $("#reset-search").hide();
+    let date = moment().format('YYYY-MM-DD');
+    console.log(date);
 
-});
-
-
-$(document).on("click", "#search", function (event) {
-  event.preventDefault();
-  console.log(" ")
-  console.log(" ")
-  console.log(" ")
-  console.log("=========================================== Search By Zip Code ================================")
-  let zipCode = $("#zipCode").val().trim();
-  console.log(`Search by Zip: ${zipCode}`);
-
-  let date = moment().format('YYYY-MM-DD');
-  console.log(date);
-
-  queryZGracenoteAPI(date, zipCode);
+    queryZGracenoteAPI(date, zipCode);
 
 });
 
-$(document).on("click", "#use-location", function (event) {
+$(document).on("click", "#use-location", function(event) {
     event.preventDefault();
     /*console.log("Search using my location");*/
     navigator.geolocation.getCurrentPosition(granted, denied);
@@ -258,12 +177,11 @@ $(document).on("click", "#use-location", function (event) {
 
 });
 
-$(document).on("click", ".movie-title", function () {
+$(document).on("click", ".movie-title", function() {
     let key = $(this).attr("id");
 
-    $("#column-2, #column-3").empty();
+    $("#movie-theater-trailer-col, #showtimes-col").empty();
 
-    queryYoutubeAPI(key);
     displayShowtimes(key);
 
 });
