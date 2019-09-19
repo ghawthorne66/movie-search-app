@@ -11,27 +11,6 @@ let year;
 
 $(document).ready(function() {
 
-    // Sticky Search Bar
-
-    function sticktothetop() {
-        var window_top = $(window).scrollTop();
-        var top = $('#stick-here').offset().top;
-        if (window_top > top && window.innerWidth >= 993) {
-            $('#stickThis').addClass('stick');
-            $('#stick-here').height($('#stickThis').outerHeight());
-        } else {
-            $('#stickThis').removeClass('stick');
-            $('#stick-here').height(0);
-        }
-
-    }
-    $(function() {
-        $(window).scroll(sticktothetop);
-        sticktothetop();
-    });
-
-
-
     // Gets movies from local storage; if empty, sets movies to an empty array
     var movies = JSON.parse(localStorage.getItem("movies") || "[]");
 
@@ -42,8 +21,10 @@ $(document).ready(function() {
         }
     }
 
+    // Movie title is submitted, searches for movie info
     $("#submit").on("click", function(event) {
         $("#no-movie-info").css("display", "none");
+        $("#movie-info").css("display", "none");
         event.preventDefault();
 
         // Gets movie entered by user
@@ -55,6 +36,7 @@ $(document).ready(function() {
         getMovieInfo(movie);
     })
 
+    // Google maps search
     $("#search").on("click", function(event) {
         // Clear map 
         deleteMarkers();
@@ -111,6 +93,12 @@ $(document).ready(function() {
         // Removes movie card from favorites
         $(this).parent().parent().parent().remove();
     })
+
+    // Sticky search bar
+    $(function() {
+        $(window).scroll(sticktothetop);
+        sticktothetop();
+    });
 
     function getMovieInfo(movie) {
 
@@ -174,10 +162,7 @@ $(document).ready(function() {
                 getStreamingInfo(movie);
 
             }
-
         })
-
-
     }
 
     // Adds a movie card to the list-favorites div
@@ -209,7 +194,7 @@ $(document).ready(function() {
         var youtubeQueryURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=" + movie + " " + year + " trailer&key=AIzaSyANwe_R8GJEK-5rYI2aufq2Gh2HZjQcOJI";
         // Jeff's API Key
         // var youtubeQueryURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=" + movie + " " + year + " trailer&key=AIzaSyBMkzMarib_oMDFs80Cc_s1uSr5Tg8n_Jo";
-        console.log(youtubeQueryURL);
+
         $.ajax({
             url: youtubeQueryURL,
             method: "GET"
@@ -226,11 +211,8 @@ $(document).ready(function() {
         });
     }
 
+    // Gets and populates data about which sites are streaming the movie searched
     function getStreamingInfo(movie) {
-
-
-
-        // ---------- Streaming Platforms Info ------------
 
         var streamQueryURL = "https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/lookup?term=" + movie + "&country=uk";
         var settings = {
@@ -304,12 +286,27 @@ $(document).ready(function() {
         favoriteCard.append(cardBody);
         $("#list-favorites").append(favoriteCard);
     }
+
+    // Sticky Search Bar
+    function sticktothetop() {
+        var window_top = $(window).scrollTop();
+        var top = $('#stick-here').offset().top;
+        if (window_top > top && window.innerWidth >= 993) {
+            $('#stickThis').addClass('stick');
+            $('#stick-here').height($('#stickThis').outerHeight());
+        } else {
+            $('#stickThis').removeClass('stick');
+            $('#stick-here').height(0);
+        }
+
+    }
 })
 
 
 
 
 /* GOOGLE MAPS FUNCTIONS */
+
 function initMap() {
     // Initialize variables
     bounds = new google.maps.LatLngBounds();
@@ -328,57 +325,12 @@ function initMap() {
     infoWindow.setPosition(pos);
     infoWindow.setContent('Location found.');
     infoWindow.open(map);
-    // map.setCenter(pos);
+
     // Call Places Nearby Search on user's location
     getNearbyPlaces(pos, "");
-    // HTML5 geolocation 
-    // if (navigator.geolocation) {
-    //     navigator.geolocation.getCurrentPosition(position => {
-    //         pos = {
-    //             lat: 35.393528,
-    //             lng: -119.043732
-    //         };
-    //         map = new google.maps.Map(document.getElementById('map'), {
-    //             center: pos,
-    //             zoom: 16
-    //         });
-    //         bounds.extend(pos);
-    //         infoWindow.setPosition(pos);
-    //         infoWindow.setContent('Location found.');
-    //         infoWindow.open(map);
-    //         map.setCenter(pos);
-    //         // Call Places Nearby Search on user's location
-    //         getNearbyPlaces(pos, "");
-    //     },
-    //         () => {
-    //             // Browser supports geolocation, but user has denied permission
-    //             handleLocationError(true, infoWindow);
-    //         });
-    // } else {
-    //     // Browser doesn't support geolocation
-    //     handleLocationError(false, infoWindow);
-    // }
+
 }
-/////////////////////////////
-// Handle a geolocation error
-// function handleLocationError(browserHasGeolocation, infoWindow) {
-//     // Set default location to San Diego, Ca
-//     pos = { lat: 32.715736, lng: -117.161087 };
-//     map = new google.maps.Map(document.getElementById('map'), {
-//         center: pos,
-//         zoom: 15
-//     });
-//     // Display an InfoWindow at the map center
-//     infoWindow.setPosition(pos);
-//     infoWindow.setContent(browserHasGeolocation ?
-//         'Geolocation permissions denied. Using default location.' :
-//         'Error: Your browser doesn\'t support geolocation.');
-//     infoWindow.open(map);
-//     currentInfoWindow = infoWindow;
-//     // Call Places Nearby Search on the default location
-//     getNearbyPlaces(pos, "92101");
-// }
-/////////////////////////////
+
 // Perform a Places Nearby Search Request
 function getNearbyPlaces(position, query) {
     //console.log("----------------> query: " + query);
@@ -489,6 +441,7 @@ function showPanel(placeResult) {
     // Open the infoPane
     infoPane.classList.add("open");
 }
+
 function deleteMarkers() {
     for (var i = 0; i < markers.length; i++) {
         markers[i].setMap(null);
