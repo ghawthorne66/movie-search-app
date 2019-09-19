@@ -24,6 +24,7 @@ $(document).ready(function() {
     // Movie title is submitted, searches for movie info
     $("#submit").on("click", function(event) {
         $("#no-movie-info").css("display", "none");
+        $("#movie-info").css("display", "none");
         event.preventDefault();
 
         // Gets movie entered by user
