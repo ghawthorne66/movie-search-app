@@ -1,5 +1,80 @@
 // Global Object to Hold Movie Query Data ==============================================================================
 let currentMovies = {};
+
+$(document).on("click", "#search", function(event) {
+    $("#invalid-zip-message").css("display", "none");
+    event.preventDefault();
+    console.log(" ")
+    console.log(" ")
+    console.log(" ")
+    console.log("=========================================== Search By Zip Code ================================")
+    let zipCode = $("#zipCode").val().trim();
+    console.log(`Search by Zip: ${zipCode}`);
+
+    let date = moment().format('YYYY-MM-DD');
+    console.log(date);
+
+    if (!validateZipCode(zipCode)) {
+        $("#invalid-zip-message").css("display", "inline");
+        console.log("invalid zip")
+    } else {
+        queryZGracenoteAPI(date, zipCode);
+        console.log("valid");
+
+    }
+
+
+
+});
+
+$(document).on("click", "#use-location", function(event) {
+    event.preventDefault();
+    /*console.log("Search using my location");*/
+    navigator.geolocation.getCurrentPosition(granted, denied);
+
+    function granted(position) {
+        let userLat = position.coords.latitude;
+        let userLong = position.coords.longitude;
+
+        /*console.log(`Position is ${userLat} x ${userLong}`);*/
+        let date = moment().format('YYYY-MM-DD');
+
+        queryLGracenoteAPI(date, userLat, userLong);
+
+        $("#search-column").empty();
+        $("#reset-search").show();
+    }
+
+    function denied(error) {
+        let message;
+        switch (error.code) {
+            case 1:
+                message = 'Permission Denied';
+                break;
+            case 2:
+                message = 'Position Unavailable';
+                break;
+            case 3:
+                message = 'Operation Timed Out';
+                break;
+            case 4:
+                message = 'Unknown Error';
+                break;
+        }
+        console.log(`GeoLocation Error: ${message}`)
+    }
+
+});
+
+$(document).on("click", ".movie-title", function() {
+    let key = $(this).attr("id");
+
+    $("#movie-theater-trailer-col, #showtimes-col").empty();
+
+    displayShowtimes(key);
+
+});
+
 // Functions ===========================================================================================================
 // To Display the Initial List of All Movies playing nearby.
 function displayMovies() {
@@ -105,7 +180,7 @@ function queryZGracenoteAPI(date, zipCode) {
     console.log(" ")
     console.log(" ")
     console.log("=========================================== queryZGracenoteAPI ================================")
-    let apiKey = 'fu4n5h6x7xfmhq96e8zg8gnn';
+    let apiKey = 'zmxbv8fhjnt7j6q4uedn4vpv';
     let queryURL = `https://data.tmsapi.com/v1.1/movies/showings?startDate=${date}&zip=${zipCode}&api_key=${apiKey}`;
 
     $.ajax({
@@ -122,66 +197,8 @@ function queryZGracenoteAPI(date, zipCode) {
 
 }
 
-$(document).on("click", "#search", function(event) {
-    event.preventDefault();
-    console.log(" ")
-    console.log(" ")
-    console.log(" ")
-    console.log("=========================================== Search By Zip Code ================================")
-    let zipCode = $("#zipCode").val().trim();
-    console.log(`Search by Zip: ${zipCode}`);
-
-    let date = moment().format('YYYY-MM-DD');
-    console.log(date);
-
-    queryZGracenoteAPI(date, zipCode);
-
-});
-
-$(document).on("click", "#use-location", function(event) {
-    event.preventDefault();
-    /*console.log("Search using my location");*/
-    navigator.geolocation.getCurrentPosition(granted, denied);
-
-    function granted(position) {
-        let userLat = position.coords.latitude;
-        let userLong = position.coords.longitude;
-
-        /*console.log(`Position is ${userLat} x ${userLong}`);*/
-        let date = moment().format('YYYY-MM-DD');
-
-        queryLGracenoteAPI(date, userLat, userLong);
-
-        $("#search-column").empty();
-        $("#reset-search").show();
-    }
-
-    function denied(error) {
-        let message;
-        switch (error.code) {
-            case 1:
-                message = 'Permission Denied';
-                break;
-            case 2:
-                message = 'Position Unavailable';
-                break;
-            case 3:
-                message = 'Operation Timed Out';
-                break;
-            case 4:
-                message = 'Unknown Error';
-                break;
-        }
-        console.log(`GeoLocation Error: ${message}`)
-    }
-
-});
-
-$(document).on("click", ".movie-title", function() {
-    let key = $(this).attr("id");
-
-    $("#movie-theater-trailer-col, #showtimes-col").empty();
-
-    displayShowtimes(key);
-
-});
+// Retrieved from http://zparacha.com/validate-zip-code-using-javascript-regular-expression
+function validateZipCode(elementValue) {
+    var zipCodePattern = /^\d{5}$|^\d{5}-\d{4}$/;
+    return zipCodePattern.test(elementValue);
+}

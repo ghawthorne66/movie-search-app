@@ -25,10 +25,11 @@ footer {
     border-top: 2px solid #ef4273
 }
 
-
-footer{
+footer {
     border-top: 2px solid #ef4273
 }
+
+
 /* ------------- Left Content Area ------------ */
 
 #logo {
@@ -162,9 +163,8 @@ footer{
     overflow-y: auto;
 }
 
-#favorite-section{
+#favorite-section {
     max-height: 35vh;
-
 }
 
 
@@ -215,6 +215,7 @@ footer{
     max-height: 200px;
     display: block;
 }
+
 .place {
     font-size: 1.7em
 }
@@ -253,6 +254,12 @@ a {
     padding: 2vh;
 }
 
+#invalid-zip-message {
+    color: red;
+    display: none;
+    margin-left: 5px;
+}
+
 
 /* -------------- Addtional Responsiveness outside of Bootstrap ----- */
 
@@ -268,7 +275,6 @@ a {
         border-bottom: 4px solid #ef4273;
         border-right: none;
     }
-
     #stickThis.stick {
         margin-top: 0;
         position: unset;

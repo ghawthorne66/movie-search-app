@@ -230,12 +230,14 @@
 
 
                         <!---zip code input field-->
-                        <input class="form-control-default" type="text" id="zipCode" placeholder="Enter Zip Code"></input>
+                        <input class="form-control-default" type="text" id="zipCode" pattern="[0-9]{5}" placeholder="Enter Zip Code"></input>
+
                         <!---zip code submit button--->
                         <button type="submit" class="btn btn-success btn-md" id="search">
                             <span aria-hidden="true"></span>Search by Zip
                         </button>
 
+                        <p id="invalid-zip-message">Please enter a valid zip code.</p>
                         <!--Google map-->
                         <div id="map-container-google-2" class="z-depth-1-half map-container" style="height: 800px">
 
@@ -246,9 +248,9 @@
                             <div id="map"></div>
                         </div>
                     </div>
-                    <!------------- END GOOGLE MAPS CODE --------------->
 
                 </div>
+                <!------------- END GOOGLE MAPS CODE --------------->
 
                 <div class="row" id="results-row">
                     <div class="col-md-6 col-sm-12 mt-2" id="theaters-col"></div>
@@ -270,7 +272,6 @@
 
     <!-- Jquery & Javascript-->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-
     <!--Google Maps API ID-->
     <script src="assets/js/gracenote.js"></script>
     <script src="assets/js/app.js"></script>
