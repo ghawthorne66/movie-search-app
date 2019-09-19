@@ -26,6 +26,9 @@ footer {
 }
 
 
+footer{
+    border-top: 2px solid #ef4273
+}
 /* ------------- Left Content Area ------------ */
 
 #logo {
@@ -156,9 +159,12 @@ footer {
 }
 
 .scroll {
-    max-height: 50vh;
-    height: 100%;
     overflow-y: auto;
+}
+
+#favorite-section{
+    max-height: 35vh;
+
 }
 
 
@@ -209,7 +215,6 @@ footer {
     max-height: 200px;
     display: block;
 }
-
 .place {
     font-size: 1.7em
 }
@@ -258,9 +263,19 @@ a {
     }
 }
 
-@media screen and (max-width: 991px) {
+@media screen and (max-width: 992px) {
     #left {
         border-bottom: 4px solid #ef4273;
         border-right: none;
+    }
+
+    #stickThis.stick {
+        margin-top: 0;
+        position: unset;
+        width: 98%;
+        top: 0;
+        z-index: 9999;
+        -webkit-border-radius: 0 0 10px 10px;
+        border-radius: 0 0 10px 10px;
     }
 }

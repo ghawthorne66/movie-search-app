@@ -310,91 +310,93 @@ $(document).ready(function() {
 
 
 /* GOOGLE MAPS FUNCTIONS */
-
 function initMap() {
     // Initialize variables
     bounds = new google.maps.LatLngBounds();
-    infoWindow = new google.maps.InfoWindow;
+    infoWindow = new google.maps.InfoWindow(); // shouldn't function be invoked when using the new keyword?
     currentInfoWindow = infoWindow;
-
     infoPane = document.getElementById('panel');
-
-    // HTML5 geolocation 
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(position => {
-            pos = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-                    //lat: 35.393528,
-                    //lng: -119.043732
-            };
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: pos,
-                zoom: 16
-            });
-            bounds.extend(pos);
-
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
-            infoWindow.open(map);
-            map.setCenter(pos);
-
-            // Call Places Nearby Search on user's location
-            getNearbyPlaces(pos, "");
-        }, () => {
-            // Browser supports geolocation, but user has denied permission
-            handleLocationError(true, infoWindow);
-        });
-    } else {
-        // Browser doesn't support geolocation
-        handleLocationError(false, infoWindow);
-    }
-}
-
-// Handle a geolocation error
-function handleLocationError(browserHasGeolocation, infoWindow) {
-    // Set default location to San Diego, Ca
-    pos = { lat: 32.715736, lng: -117.161087 };
+    pos = {
+        lat: 32.7157,
+        lng: -117.1611
+    };
     map = new google.maps.Map(document.getElementById('map'), {
         center: pos,
-        zoom: 15
+        zoom: 16
     });
-
-    // Display an InfoWindow at the map center
+    bounds.extend(pos);
     infoWindow.setPosition(pos);
-    infoWindow.setContent(browserHasGeolocation ?
-        'Geolocation permissions denied. Using default location.' :
-        'Error: Your browser doesn\'t support geolocation.');
+    infoWindow.setContent('Location found.');
     infoWindow.open(map);
-    currentInfoWindow = infoWindow;
-
-    // Call Places Nearby Search on the default location
-    getNearbyPlaces(pos, "92101");
+    // map.setCenter(pos);
+    // Call Places Nearby Search on user's location
+    getNearbyPlaces(pos, "");
+    // HTML5 geolocation 
+    // if (navigator.geolocation) {
+    //     navigator.geolocation.getCurrentPosition(position => {
+    //         pos = {
+    //             lat: 35.393528,
+    //             lng: -119.043732
+    //         };
+    //         map = new google.maps.Map(document.getElementById('map'), {
+    //             center: pos,
+    //             zoom: 16
+    //         });
+    //         bounds.extend(pos);
+    //         infoWindow.setPosition(pos);
+    //         infoWindow.setContent('Location found.');
+    //         infoWindow.open(map);
+    //         map.setCenter(pos);
+    //         // Call Places Nearby Search on user's location
+    //         getNearbyPlaces(pos, "");
+    //     },
+    //         () => {
+    //             // Browser supports geolocation, but user has denied permission
+    //             handleLocationError(true, infoWindow);
+    //         });
+    // } else {
+    //     // Browser doesn't support geolocation
+    //     handleLocationError(false, infoWindow);
+    // }
 }
-
+/////////////////////////////
+// Handle a geolocation error
+// function handleLocationError(browserHasGeolocation, infoWindow) {
+//     // Set default location to San Diego, Ca
+//     pos = { lat: 32.715736, lng: -117.161087 };
+//     map = new google.maps.Map(document.getElementById('map'), {
+//         center: pos,
+//         zoom: 15
+//     });
+//     // Display an InfoWindow at the map center
+//     infoWindow.setPosition(pos);
+//     infoWindow.setContent(browserHasGeolocation ?
+//         'Geolocation permissions denied. Using default location.' :
+//         'Error: Your browser doesn\'t support geolocation.');
+//     infoWindow.open(map);
+//     currentInfoWindow = infoWindow;
+//     // Call Places Nearby Search on the default location
+//     getNearbyPlaces(pos, "92101");
+// }
+/////////////////////////////
 // Perform a Places Nearby Search Request
 function getNearbyPlaces(position, query) {
     //console.log("----------------> query: " + query);
-
     var request = {
         location: position,
         radius: '500',
         query: query,
         type: ['movie_theater']
     };
-
     service = new google.maps.places.PlacesService(map);
     service.textSearch(request, nearbyCallback);
-
 }
-
 // Handle the results (up to 20) of the Nearby Search
 function nearbyCallback(results, status) {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
         createMarkers(results);
     }
 }
-
 // Set markers at the location of each place result
 function createMarkers(places) {
     places.forEach(place => {
@@ -402,7 +404,6 @@ function createMarkers(places) {
         // console.log(" ")
         // console.log(" ")
         // console.log(" ")
-
         map.setCenter(place.geometry.location);
         let marker = new google.maps.Marker({
             position: place.geometry.location,
@@ -410,30 +411,23 @@ function createMarkers(places) {
             title: place.name
         });
         markers.push(marker);
-
         // Add click listener to each marker
         google.maps.event.addListener(marker, 'click', () => {
             let request = {
                 placeId: place.place_id,
                 fields: ['name', 'formatted_address', 'geometry', 'rating', 'website', 'photos']
-
             };
-
             service.getDetails(request, (placeResult, status) => {
                 console.log("status in createMarkers: " + status);
                 console.log("placeResult in createMarkers: " + placeResult);
                 showDetails(placeResult, marker, status)
             });
         });
-
         // Adjust the map bounds to include the location of this marker
         bounds.extend(place.geometry.location);
     });
-
-
     map.fitBounds(bounds);
 }
-
 // InfoWindow to display details above the marker
 function showDetails(placeResult, marker, status) {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
@@ -450,19 +444,16 @@ function showDetails(placeResult, marker, status) {
         console.log('showDetails failed: ' + status);
     }
 }
-
 // Displays place details in a sidebar
 function showPanel(placeResult) {
     // If infoPane is already open, close it
     if (infoPane.classList.contains("open")) {
         infoPane.classList.remove("open");
     }
-
     // Clear the previous details
     while (infoPane.lastChild) {
         infoPane.removeChild(infoPane.lastChild);
     }
-
     if (placeResult.photos) {
         let firstPhoto = placeResult.photos[0];
         let photo = document.createElement('img');
@@ -470,7 +461,6 @@ function showPanel(placeResult) {
         photo.src = firstPhoto.getUrl();
         infoPane.appendChild(photo);
     }
-
     // Add place details with text
     let name = document.createElement('h1');
     name.classList.add('place');
@@ -496,13 +486,9 @@ function showPanel(placeResult) {
         websitePara.appendChild(websiteLink);
         infoPane.appendChild(websitePara);
     }
-
-
     // Open the infoPane
     infoPane.classList.add("open");
-
 }
-
 function deleteMarkers() {
     for (var i = 0; i < markers.length; i++) {
         markers[i].setMap(null);
